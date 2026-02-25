@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# PyTorch checkpoints & model weights
+*.pt
+*.pth
+*.ckpt
+*.bin
+
+# Training artifacts
+experiments/checkpoints/
+experiments/checkpoints_old_stage2/
+*.log
+nohup.out
+
+# Data backups (originals before NL enrichment)
+*.bak
+
+# Utterance bank (generated, can be regenerated)
+data/utterance_bank.json
+
+# Environment
+.env
+.venv/
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Temporary files
+/tmp/
+*.tmp

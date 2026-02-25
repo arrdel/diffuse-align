@@ -1,0 +1,281 @@
+# DiffuseAlign Configuration
+# Multi-Agent Dialogue Coordination via Joint Diffusion Planning
+
+# ─── Model Architecture ───────────────────────────────────────────────
+model:
+  name: "diffuse_align"
+
+  # Plan Diffusion Model
+  diffusion:
+    # Plan representation
+    max_agents: 4                    # Maximum number of agents in a team
+    max_plan_steps: 32               # Maximum steps in a joint plan
+    action_vocab_size: 128           # Discrete action vocabulary
+    action_embed_dim: 256            # Action embedding dimension
+    plan_dim: 512                    # Latent plan dimension
+
+    # Denoiser architecture (1D U-Net over plan sequence)
+    denoiser:
+      type: "transformer"            # "unet_1d" or "transformer"
+      hidden_dim: 512
+      num_heads: 8
+      num_layers: 6
+      dropout: 0.1
+      time_embed_dim: 128
+      condition_dim: 512             # Conditioning vector dimension
+
+    # Diffusion process
+    num_train_timesteps: 1000
+    num_inference_timesteps: 50      # DDIM steps at inference
+    beta_schedule: "squaredcos_cap_v2"
+    prediction_type: "epsilon"       # "epsilon" or "sample"
+    clip_sample: true
+
+  # Plan Encoder (task + agent states → condition)
+  plan_encoder:
+    task_encoder:
+      type: "transformer"
+      pretrained: "sentence-transformers/all-MiniLM-L6-v2"
+      freeze: true
+      output_dim: 384
+    agent_state_encoder:
+      type: "mlp"
+      input_dim: 128                 # Agent state feature dim
+      hidden_dims: [256, 512]
+      output_dim: 512
+    fusion:
+      type: "cross_attention"
+      num_heads: 8
+      num_layers: 2
+
+  # Role-Conditioned Masking
+  role_masking:
+    num_roles: 4                     # Max distinct roles
+    capability_dim: 64               # Per-role capability vector
+    mask_type: "soft"                # "hard" or "soft" masking
+    temperature: 0.1                 # For soft masking (Gumbel)
+
+  # Compositional Guidance
+  guidance:
+    # Classifier-free guidance
+    unconditional_prob: 0.1          # Probability of dropping condition during training
+    guidance_scale: 3.0              # CFG scale at inference
+
+    # Composable guidance signals
+    task_completion:
+      weight: 1.0
+      type: "learned"               # Learned task-completion classifier
+      hidden_dim: 256
+    safety:
+      weight: 0.5
+      type: "rule_based"            # Rule-based safety checker
+      blocked_actions: ["rm -rf", "sudo", "DROP TABLE"]
+    efficiency:
+      weight: 0.3
+      type: "length_penalty"        # Penalize long plans
+      target_ratio: 1.2             # Target: 1.2x optimal length
+    coordination:
+      weight: 0.5
+      type: "learned"               # Penalize redundant/conflicting actions
+      hidden_dim: 256
+
+  # Plan-to-Dialogue Decoder
+  plan_decoder:
+    type: "seq2seq"
+    backbone: "google/flan-t5-base"
+    freeze_backbone: false
+    max_utterance_length: 128
+    beam_size: 4
+
+# ─── Agent Configuration ──────────────────────────────────────────────
+agents:
+  # Agent archetypes
+  archetypes:
+    - name: "navigator"
+      description: "Specializes in spatial reasoning and navigation"
+      capabilities: ["navigate", "look", "examine", "open", "close"]
+      knowledge: ["spatial", "layout"]
+
+    - name: "manipulator"
+      description: "Specializes in object interaction and tool use"
+      capabilities: ["pick_up", "put_down", "use", "combine", "heat", "cool"]
+      knowledge: ["objects", "tools"]
+
+    - name: "researcher"
+      description: "Specializes in information lookup and web tasks"
+      capabilities: ["search", "read", "click", "type", "scroll"]
+      knowledge: ["web", "documents"]
+
+    - name: "coordinator"
+      description: "Manages task decomposition and delegation"
+      capabilities: ["delegate", "verify", "summarize", "plan"]
+      knowledge: ["meta", "task_structure"]
+
+# ─── Data Configuration ───────────────────────────────────────────────
+data:
+  # Multi-agent trajectory datasets
+  train_datasets:
+    - name: "alfworld_multi"
+      path: "data/alfworld_multi"
+      type: "household_tasks"
+      num_agents: 2
+      split: "train"
+
+    - name: "webarena_multi"
+      path: "data/webarena_multi"
+      type: "web_tasks"
+      num_agents: 3
+      split: "train"
+
+    - name: "collab_cooking"
+      path: "data/collab_cooking"
+      type: "cooking_tasks"
+      num_agents: 2
+      split: "train"
+
+  eval_datasets:
+    - name: "alfworld_multi"
+      path: "data/alfworld_multi"
+      split: "test"
+
+    - name: "webarena_multi"
+      path: "data/webarena_multi"
+      split: "test"
+
+    - name: "collab_cooking"
+      path: "data/collab_cooking"
+      split: "test"
+
+  # Trajectory collection settings
+  trajectory_collection:
+    max_episodes: 10000
+    max_steps_per_episode: 50
+    collector: "gpt-4o"              # LLM used to collect seed trajectories
+    temperature: 0.7
+    num_retries: 3
+
+  # Data processing
+  processing:
+    action_tokenizer: "learned"      # "learned" or "fixed"
+    state_representation: "structured"  # "text" or "structured"
+    augmentation:
+      enabled: true
+      agent_permutation: true        # Shuffle agent assignments
+      step_dropout: 0.05             # Randomly drop non-critical steps
+      paraphrase: false              # Paraphrase task descriptions
+
+# ─── Training Configuration ───────────────────────────────────────────
+training:
+  # Optimizer
+  optimizer:
+    type: "adamw"
+    lr: 1.0e-4
+    weight_decay: 0.01
+    betas: [0.9, 0.999]
+    eps: 1.0e-8
+
+  # Schedule
+  scheduler:
+    type: "cosine"
+    warmup_steps: 1000
+    num_training_steps: 100000
+
+  # Training loop
+  batch_size: 64
+  gradient_accumulation_steps: 4
+  max_grad_norm: 1.0
+  mixed_precision: "fp16"
+  seed: 42
+
+  # Diffusion training
+  noise_schedule_sampling: "uniform"  # "uniform" or "importance"
+  ema_decay: 0.9999
+
+  # Plan decoder training (Stage 2)
+  decoder_training:
+    lr: 5.0e-5
+    batch_size: 32
+    num_epochs: 10
+    freeze_diffusion: true
+
+  # Guidance classifier training (Stage 3)
+  guidance_training:
+    lr: 1.0e-4
+    batch_size: 128
+    num_epochs: 20
+
+  # Checkpointing
+  checkpoint:
+    save_every: 5000
+    keep_last: 3
+    output_dir: "experiments/checkpoints"
+
+  # Logging
+  logging:
+    backend: "wandb"
+    project: "diffuse-align"
+    log_every: 100
+    eval_every: 2000
+
+# ─── Evaluation Configuration ─────────────────────────────────────────
+evaluation:
+  metrics:
+    # Functional success metrics
+    task_success_rate:
+      description: "Fraction of tasks fully completed"
+      primary: true
+    action_efficiency:
+      description: "Ratio of actions taken to minimum required"
+      optimal: 1.0
+    coordination_score:
+      description: "1 - (redundant + conflicting actions) / total actions"
+      optimal: 1.0
+    turn_count:
+      description: "Total dialogue turns to task completion"
+      lower_is_better: true
+    delegation_accuracy:
+      description: "Fraction of actions assigned to capable agents"
+      optimal: 1.0
+
+    # Fluency metrics
+    fluency_bertscore:
+      description: "BERTScore of generated dialogue"
+      model: "microsoft/deberta-xlarge-mnli"
+    coherence_nli:
+      description: "NLI-based inter-turn coherence"
+      model: "cross-encoder/nli-deberta-v3-base"
+
+    # Composite
+    functional_fluency_gap:
+      description: "task_success_rate - fluency_bertscore (our key metric)"
+      interpretation: "Positive = functionally strong; Negative = fluent but failing"
+
+  # Ablation dimensions
+  ablations:
+    - name: "no_joint_planning"
+      description: "Sequential per-agent diffusion instead of joint"
+    - name: "no_role_masking"
+      description: "Remove role-conditioned masks"
+    - name: "no_guidance"
+      description: "Remove compositional guidance (just unconditional diffusion)"
+    - name: "no_efficiency_guidance"
+      description: "Remove efficiency guidance only"
+    - name: "no_coordination_guidance"
+      description: "Remove coordination guidance only"
+    - name: "autoregressive_baseline"
+      description: "Replace diffusion with autoregressive plan generation"
+
+  # Complexity stratification
+  complexity_bins:
+    - name: "simple"
+      min_steps: 1
+      max_steps: 5
+      description: "Tasks solvable in ≤5 steps"
+    - name: "moderate"
+      min_steps: 6
+      max_steps: 15
+      description: "Tasks requiring 6-15 steps"
+    - name: "complex"
+      min_steps: 16
+      max_steps: 50
+      description: "Tasks requiring tight multi-agent coordination"

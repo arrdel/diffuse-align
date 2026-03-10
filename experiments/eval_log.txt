@@ -1,0 +1,69 @@
+nohup: ignoring input
+============================================================
+DiffuseAlign Evaluation
+============================================================
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 12944.99it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+Loading weights:   0%|          | 0/282 [00:00<?, ?it/s]Loading weights: 100%|██████████| 282/282 [00:00<00:00, 13188.31it/s]
+The tied weights mapping and config for this model specifies to tie shared.weight to lm_head.weight, but both are present in the checkpoints, so we will NOT tie them. You should update the config with `tie_word_embeddings=False` to silence this warning
+Model parameters: 310.6M
+Loading checkpoint: experiments/checkpoints/diffusealign_final.pt
+  ✓ All 683 keys loaded successfully
+Team:
+AgentTeam(n=3):
+  Agent(name=Navigator, role=navigator, id=0)
+  Agent(name=Manipulator, role=manipulator, id=1)
+  Agent(name=Coordinator, role=coordinator, id=2)
+Device: cuda:0
+Guidance: ON (scale=3.0)
+Episodes: 100
+Task suite: 12 tasks (4 simple, 4 moderate, 4 complex)
+Dialogue decoding: ENABLED
+
+Evaluating:   0%|          | 0/100 [00:00<?, ?it/s]Evaluating:   1%|          | 1/100 [00:02<04:43,  2.86s/it]Evaluating:   2%|▏         | 2/100 [00:05<04:06,  2.51s/it]Evaluating:   3%|▎         | 3/100 [00:07<03:53,  2.41s/it]Evaluating:   4%|▍         | 4/100 [00:09<03:45,  2.35s/it]Evaluating:   5%|▌         | 5/100 [00:11<03:40,  2.32s/it]Evaluating:   6%|▌         | 6/100 [00:14<03:36,  2.31s/it]Evaluating:   7%|▋         | 7/100 [00:16<03:33,  2.30s/it]Evaluating:   8%|▊         | 8/100 [00:18<03:30,  2.29s/it]Evaluating:   9%|▉         | 9/100 [00:21<03:27,  2.28s/it]Evaluating:  10%|█         | 10/100 [00:23<03:25,  2.28s/it]Evaluating:  11%|█         | 11/100 [00:25<03:22,  2.27s/it]Evaluating:  12%|█▏        | 12/100 [00:27<03:19,  2.27s/it]Evaluating:  13%|█▎        | 13/100 [00:30<03:17,  2.27s/it]Evaluating:  14%|█▍        | 14/100 [00:32<03:15,  2.27s/it]Evaluating:  15%|█▌        | 15/100 [00:34<03:12,  2.27s/it]Evaluating:  16%|█▌        | 16/100 [00:36<03:10,  2.27s/it]Evaluating:  17%|█▋        | 17/100 [00:39<03:08,  2.27s/it]Evaluating:  18%|█▊        | 18/100 [00:41<03:06,  2.27s/it]Evaluating:  19%|█▉        | 19/100 [00:43<03:03,  2.27s/it]Evaluating:  20%|██        | 20/100 [00:45<03:01,  2.26s/it]Evaluating:  21%|██        | 21/100 [00:48<02:58,  2.27s/it]Evaluating:  22%|██▏       | 22/100 [00:50<02:56,  2.26s/it]Evaluating:  23%|██▎       | 23/100 [00:52<02:54,  2.26s/it]Evaluating:  24%|██▍       | 24/100 [00:55<02:52,  2.27s/it]Evaluating:  25%|██▌       | 25/100 [00:57<02:49,  2.27s/it]Evaluating:  26%|██▌       | 26/100 [00:59<02:47,  2.26s/it]Evaluating:  27%|██▋       | 27/100 [01:01<02:45,  2.26s/it]Evaluating:  28%|██▊       | 28/100 [01:04<02:42,  2.26s/it]Evaluating:  29%|██▉       | 29/100 [01:06<02:40,  2.26s/it]Evaluating:  30%|███       | 30/100 [01:08<02:38,  2.26s/it]Evaluating:  31%|███       | 31/100 [01:10<02:35,  2.26s/it]Evaluating:  32%|███▏      | 32/100 [01:13<02:33,  2.26s/it]Evaluating:  33%|███▎      | 33/100 [01:15<02:31,  2.26s/it]Evaluating:  34%|███▍      | 34/100 [01:17<02:30,  2.28s/it]Evaluating:  35%|███▌      | 35/100 [01:19<02:27,  2.27s/it]Evaluating:  36%|███▌      | 36/100 [01:22<02:25,  2.27s/it]Evaluating:  37%|███▋      | 37/100 [01:24<02:22,  2.27s/it]Evaluating:  38%|███▊      | 38/100 [01:26<02:20,  2.26s/it]Evaluating:  39%|███▉      | 39/100 [01:29<02:18,  2.26s/it]Evaluating:  40%|████      | 40/100 [01:31<02:16,  2.27s/it]Evaluating:  41%|████      | 41/100 [01:33<02:13,  2.27s/it]Evaluating:  42%|████▏     | 42/100 [01:35<02:11,  2.27s/it]Evaluating:  43%|████▎     | 43/100 [01:38<02:09,  2.27s/it]Evaluating:  44%|████▍     | 44/100 [01:40<02:06,  2.27s/it]Evaluating:  45%|████▌     | 45/100 [01:42<02:04,  2.26s/it]Evaluating:  46%|████▌     | 46/100 [01:44<02:02,  2.26s/it]Evaluating:  47%|████▋     | 47/100 [01:47<01:59,  2.26s/it]Evaluating:  48%|████▊     | 48/100 [01:49<01:57,  2.26s/it]Evaluating:  49%|████▉     | 49/100 [01:51<01:55,  2.26s/it]Evaluating:  50%|█████     | 50/100 [01:53<01:52,  2.26s/it]Evaluating:  51%|█████     | 51/100 [01:56<01:50,  2.26s/it]Evaluating:  52%|█████▏    | 52/100 [01:58<01:48,  2.26s/it]Evaluating:  53%|█████▎    | 53/100 [02:00<01:46,  2.26s/it]Evaluating:  54%|█████▍    | 54/100 [02:02<01:44,  2.26s/it]Evaluating:  55%|█████▌    | 55/100 [02:05<01:41,  2.26s/it]Evaluating:  56%|█████▌    | 56/100 [02:07<01:39,  2.26s/it]Evaluating:  57%|█████▋    | 57/100 [02:09<01:37,  2.26s/it]Evaluating:  58%|█████▊    | 58/100 [02:11<01:34,  2.26s/it]Evaluating:  59%|█████▉    | 59/100 [02:14<01:32,  2.26s/it]Evaluating:  60%|██████    | 60/100 [02:16<01:30,  2.26s/it]Evaluating:  61%|██████    | 61/100 [02:18<01:28,  2.26s/it]Evaluating:  62%|██████▏   | 62/100 [02:21<01:25,  2.26s/it]Evaluating:  63%|██████▎   | 63/100 [02:23<01:23,  2.26s/it]Evaluating:  64%|██████▍   | 64/100 [02:25<01:21,  2.26s/it]Evaluating:  65%|██████▌   | 65/100 [02:27<01:19,  2.26s/it]Evaluating:  66%|██████▌   | 66/100 [02:30<01:16,  2.26s/it]Evaluating:  67%|██████▋   | 67/100 [02:32<01:14,  2.26s/it]Evaluating:  68%|██████▊   | 68/100 [02:34<01:12,  2.26s/it]Evaluating:  69%|██████▉   | 69/100 [02:36<01:10,  2.26s/it]Evaluating:  70%|███████   | 70/100 [02:39<01:07,  2.26s/it]Evaluating:  71%|███████   | 71/100 [02:41<01:05,  2.26s/it]Evaluating:  72%|███████▏  | 72/100 [02:43<01:03,  2.26s/it]Evaluating:  73%|███████▎  | 73/100 [02:45<01:01,  2.26s/it]Evaluating:  74%|███████▍  | 74/100 [02:48<00:58,  2.26s/it]Evaluating:  75%|███████▌  | 75/100 [02:50<00:56,  2.26s/it]Evaluating:  76%|███████▌  | 76/100 [02:52<00:54,  2.26s/it]Evaluating:  77%|███████▋  | 77/100 [02:54<00:51,  2.26s/it]Evaluating:  78%|███████▊  | 78/100 [02:57<00:49,  2.26s/it]Evaluating:  79%|███████▉  | 79/100 [02:59<00:47,  2.26s/it]Evaluating:  80%|████████  | 80/100 [03:01<00:45,  2.26s/it]Evaluating:  81%|████████  | 81/100 [03:03<00:42,  2.26s/it]Evaluating:  82%|████████▏ | 82/100 [03:06<00:40,  2.26s/it]Evaluating:  83%|████████▎ | 83/100 [03:08<00:38,  2.26s/it]Evaluating:  84%|████████▍ | 84/100 [03:10<00:36,  2.26s/it]Evaluating:  85%|████████▌ | 85/100 [03:12<00:33,  2.26s/it]Evaluating:  86%|████████▌ | 86/100 [03:15<00:31,  2.26s/it]Evaluating:  87%|████████▋ | 87/100 [03:17<00:29,  2.26s/it]Evaluating:  88%|████████▊ | 88/100 [03:19<00:27,  2.26s/it]Evaluating:  89%|████████▉ | 89/100 [03:22<00:24,  2.26s/it]Evaluating:  90%|█████████ | 90/100 [03:24<00:22,  2.26s/it]Evaluating:  91%|█████████ | 91/100 [03:26<00:20,  2.26s/it]Evaluating:  92%|█████████▏| 92/100 [03:28<00:18,  2.26s/it]Evaluating:  93%|█████████▎| 93/100 [03:31<00:15,  2.26s/it]Evaluating:  94%|█████████▍| 94/100 [03:33<00:13,  2.27s/it]Evaluating:  95%|█████████▌| 95/100 [03:35<00:11,  2.27s/it]Evaluating:  96%|█████████▌| 96/100 [03:37<00:09,  2.28s/it]Evaluating:  97%|█████████▋| 97/100 [03:40<00:06,  2.28s/it]Evaluating:  98%|█████████▊| 98/100 [03:42<00:04,  2.28s/it]Evaluating:  99%|█████████▉| 99/100 [03:44<00:02,  2.28s/it]Evaluating: 100%|██████████| 100/100 [03:47<00:00,  2.29s/it]Evaluating: 100%|██████████| 100/100 [03:47<00:00,  2.27s/it]
+
+============================================================
+EVALUATION REPORT
+============================================================
+Episodes:             100
+Task Success Rate:    0.0%
+Action Efficiency:    5.601
+Coordination Score:   -0.163
+Avg Turn Count:       4.6
+Delegation Accuracy:  100.0%
+Avg Generation Time:  0.84s ± 0.06s
+
+Per-Complexity Breakdown:
+  Complexity    Success  Efficiency    Coord    Turns     N
+  ──────────── ──────── ─────────── ──────── ──────── ─────
+  simple          0.0%       1.711    0.149      5.2    36
+  moderate        0.0%       4.524    0.007      4.2    32
+  complex         0.0%      11.053   -0.686      4.2    32
+
+Sample Generated Dialogues:
+
+  Task: Find the red mug and place it on the kitchen counter.
+    Agent 0: Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1: nop | Agent 1: nop | Agent 1: nop | Agent 1: nop | Agent 0: nop | Agent 0: nop
+    Agent 1: Agent 0: navigate(usp | | Agent 0: navigate0finddownus | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1:
+    Agent 2: Agent 0: nop | nop | | | | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | | Agent 0: nop | Agent 0: nop | Agent 0
+    Agent 3: Agent 0: nop | Agent | Agent 0: navigate: | Agent 0: navigate0p | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1: | Agent 0: nop | Agent 0: nop | Agent 1: | Agent 0: nop | Agent 1: | Agent 0: nop | Agent 1: | Agent 0: navigate0 | Agent 1: nop | Agent | Agent | Agent | Agent | Agent | Agent |
+
+  Task: Find and return the library book from the bedroom to the study.
+    Agent 0: Agent_0us | | 0: | 0: s0s | | 0: | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | Agent 0: nop | | | Agent 1: nop | | | | Agent 1: nop | | | | | Agent 1: nop | | | Agent 0: _(us_0us | | Agent 1: nop | | | | Agent 0: 0: __0us | | |
+    Agent 1: Agent 0: nop | Agent | Agent 1: navigate0 | Agent 1: navigate0p | Agent 1: navigate(usp | Agent 1: nop | Agent 0: navigate(usp | Agent 1: | Agent 1: navigate(usp | Agent 1: navigate(usp | Agent 1: navigate(usp | Agent 1: navigate(usp | Agent 1: navigate(usp | Agent 1: | Agent 1: navigate(us | Agent 1: navigate(usp | Agent 1: navigate(p | Agent | Agent 1: nop | Agent | Agent 1:
+    Agent 2: Agent 0: nop | nop | | | Agent 0: nop | Agent 0: nous | | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop |
+    Agent 3: Agent 0: nop | Agent 0: nous | Agent 0: nous | Agent 0: nous | Agent 0: nous | Agent 0: navigate(usp | Agent 1: navigate(usus | Agent 1: navigate(usp | Agent 0: navigate(downus | Agent 1: navigate(usp | Agent 0: navigate(usp | Agent 0: navigate(downus | Agent 0: nous | Agent 0: navigate(usp | Agent 0: nous | Agent 0: nous | Agent 1:
+
+  Task: Move the vase from room_2 to room_0.
+    Agent 0: Agent 0: nop | Agent | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1: | Agent | Agent | Agent | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent | Agent | Agent | Agent | Agent | Agent
+    Agent 1: Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 
+    Agent 2: Agent 0: Agent 0: nop | Agent | Agent 0: nop | Agent 0: navigate(us | Agent 1: | Agent 0: nous | Agent 1: | Agent 0: navigate(usp | Agent 1: | Agent 1: | Agent 0: | Agent 0: | Agent 0: | Agent 0: | Agent 0: | Agent 0: | Agent 0: | Agent 0: | Agent 0: navigate(usp | Agent 1: | Agent 0: nop | Agent 0: nous | Agent
+    Agent 3: Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1: | Agent 1: | Agent 0: nop | Agent 1: | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 0: nop | Agent 1: nop | Agent 1: nop | Agent 1: nop |
+
+✓ Report saved to experiments/eval_results.json

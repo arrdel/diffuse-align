@@ -1,0 +1,65 @@
+{
+  "ablation": "full",
+  "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+  "config": {
+    "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 3.0
+  },
+  "metrics": {
+    "task_success_rate": 0.0,
+    "action_efficiency": 5.068893772893773,
+    "coordination_score": -0.2480879120879121,
+    "avg_turn_count": 4.2,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.0,
+    "num_episodes": 50,
+    "simple/task_success_rate": 0.0,
+    "simple/action_efficiency": 1.7083333333333333,
+    "simple/coordination_score": 0.39814814814814814,
+    "simple/avg_turn_count": 4.5,
+    "simple/num_episodes": 18,
+    "moderate/task_success_rate": 0.0,
+    "moderate/action_efficiency": 4.486607142857142,
+    "moderate/coordination_score": -0.2683035714285714,
+    "moderate/avg_turn_count": 3.9375,
+    "moderate/num_episodes": 16,
+    "complex/task_success_rate": 0.0,
+    "complex/action_efficiency": 9.431810897435899,
+    "complex/coordination_score": -0.9548878205128204,
+    "complex/avg_turn_count": 4.125,
+    "complex/num_episodes": 16
+  },
+  "gen_time_mean": 0.8725021886825561,
+  "gen_time_std": 0.07881176017562781,
+  "elapsed_s": 68.23906540870667,
+  "num_episodes": 50,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the bedroom is looking tidy!",
+      "Okay, so I'm moving to room_2.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I's all set now."
+    ],
+    "t002": [
+      "Alright, I'm heading to room_0.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I'm heading around, room_0 looks!",
+      "Alo, I'm in the place as I know what to do next."
+    ],
+    "t003": [
+      "Yeah, I'm not seeing anything in here.",
+      "Alright, I'm heading to room_3, the studyy.",
+      "Alright, I'm heading to room_3, everything looks out of the place.",
+      "Okay, so I've found the red mug..."
+    ]
+  }
+}

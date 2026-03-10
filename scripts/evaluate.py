@@ -89,6 +89,8 @@ def parse_args():
                         help="Disable compositional guidance (CFG only)")
     parser.add_argument("--guidance_scale", type=float, default=None,
                         help="Override CFG scale (default from config: 3.0)")
+    parser.add_argument("--active_signals", nargs="+", default=None,
+                        help="Which guidance signals to use (task safety efficiency coordination). Default: all")
     parser.add_argument("--num_inference_steps", type=int, default=None,
                         help="DDIM sampling steps (default 50)")
     parser.add_argument("--decode_utterances", action="store_true",
@@ -178,6 +180,7 @@ def run_evaluation(
     device: torch.device,
     use_guidance: bool = True,
     guidance_scale: float = 3.0,
+    active_signals: Optional[List[str]] = None,
     num_inference_steps: Optional[int] = None,
     decode_utterances: bool = False,
 ) -> Tuple[List[EpisodeResult], Dict[str, list]]:
@@ -211,6 +214,7 @@ def run_evaluation(
             capabilities=capabilities,
             use_guidance=use_guidance,
             guidance_scale=guidance_scale,
+            active_guidance_signals=active_signals,
             num_inference_steps=num_inference_steps,
         )
         gen_time = time.time() - t0
@@ -355,6 +359,7 @@ def main():
         device=device,
         use_guidance=not args.no_guidance,
         guidance_scale=guidance_scale,
+        active_signals=getattr(args, 'active_signals', None),
         num_inference_steps=args.num_inference_steps,
         decode_utterances=args.decode_utterances,
     )

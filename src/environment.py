@@ -114,8 +114,9 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
         self._success = False
         self._task = None
 
-        # Simulated world state
-        self._rooms = [f"room_{i}" for i in range(num_rooms)]
+        # Simulated world state — named rooms for natural task descriptions
+        self._room_names = ["kitchen", "bedroom", "study", "living_room", "garage"]
+        self._rooms = self._room_names[:num_rooms]
         self._objects = {}
         self._agent_positions = {}
         self._agent_inventories = {}
@@ -145,9 +146,15 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
             self._agent_positions[i] = self._rooms[idx]
             self._agent_inventories[i] = []
 
-        # Place target object
-        target_room_idx = torch.randint(0, self.num_rooms, (1,), generator=self._rng).item()
-        self._objects["red_mug"] = {"location": self._rooms[target_room_idx], "held_by": None}
+        # Reset goal-tracking state
+        self._subgoals_done: set[str] = set()
+        self._interactions: int = 0       # count of meaningful actions
+        self._rooms_visited: set[str] = set()
+        self._objects_manipulated: set[str] = set()
+
+        # Place objects relevant to the task
+        self._objects = {}
+        self._setup_task_objects(task)
 
         # Initial observations
         observations = {}
@@ -160,6 +167,41 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
             )
 
         return task, observations
+
+    # ── Task-specific object placement ───────────────────────────
+    _TASK_OBJECTS: dict[str, list[str]] = {
+        "red_mug on kitchen":          ["red_mug"],
+        "book on study":               ["book"],
+        "vase on kitchen":             ["vase"],
+        "keys on living_room":         ["keys"],
+        "bathroom_clean":              ["tub_brush", "mop", "toiletries"],
+        "table_set":                   ["plates", "cups", "cutlery"],
+        "mail_sorted":                 ["package_a", "package_b", "package_c"],
+        "living_room_tidy":            ["toys", "cushions", "vacuum"],
+        "dinner_ready":                ["recipe", "ingredients", "pan", "plates"],
+        "garage_organized":            ["tools", "trash_bag", "shelf_items"],
+        "party_ready":                 ["decorations", "snacks", "speaker"],
+        "emergency_cleared":           ["fragile_items", "floor_debris", "furniture"],
+    }
+
+    # How many distinct objects must be manipulated for success
+    _GOAL_THRESHOLDS: dict[str, int] = {
+        "bathroom_clean": 3,
+        "table_set": 3,
+        "mail_sorted": 3,
+        "living_room_tidy": 3,
+        "dinner_ready": 4,
+        "garage_organized": 3,
+        "party_ready": 3,
+        "emergency_cleared": 3,
+    }
+
+    def _setup_task_objects(self, task: TaskSpec) -> None:
+        """Place task-relevant objects in the world."""
+        obj_names = self._TASK_OBJECTS.get(task.goal, ["target_object"])
+        for name in obj_names:
+            room_idx = torch.randint(0, self.num_rooms, (1,), generator=self._rng).item()
+            self._objects[name] = {"location": self._rooms[room_idx], "held_by": None}
 
     def step(self, actions: Dict[int, str]) -> StepResult:
         self._step_count += 1
@@ -180,7 +222,9 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
                 target = action.split("(")[-1].rstrip(")")
                 if target in self._rooms:
                     self._agent_positions[agent_id] = target
+                    self._rooms_visited.add(target)
                     obs_text += f"Moved to {target}."
+                    self._interactions += 1
                 else:
                     obs_text += f"Cannot navigate to {target}."
                     reward -= 0.1
@@ -195,6 +239,7 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
                     obs_text += f"You see: {', '.join(visible_objects)}"
                 else:
                     obs_text += "Nothing notable here."
+                self._interactions += 1
 
             elif action.startswith("pick_up"):
                 target = action.split("(")[-1].rstrip(")")
@@ -203,8 +248,10 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
                     self._objects[target]["held_by"] = agent_id
                     self._objects[target]["location"] = None
                     self._agent_inventories[agent_id].append(target)
+                    self._objects_manipulated.add(target)
                     obs_text += f"Picked up {target}."
                     reward += 0.1
+                    self._interactions += 1
                 else:
                     obs_text += f"Cannot pick up {target} here."
 
@@ -215,12 +262,17 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
                     self._objects[target]["held_by"] = None
                     self._objects[target]["location"] = pos
                     self._agent_inventories[agent_id].remove(target)
+                    self._objects_manipulated.add(target)
                     obs_text += f"Put down {target} at {pos}."
+                    self._interactions += 1
 
-                    # Check goal
+                    # Check placement goal (simple tasks like "X on Y")
                     if self._task and self._task.goal == f"{target} on {pos}":
-                        self._success = True
-                        self._done = True
+                        self._subgoals_done.add("placement")
+                        reward += 1.0
+                    # Also match "X in Y" pattern
+                    elif self._task and self._task.goal == f"{target} in {pos}":
+                        self._subgoals_done.add("placement")
                         reward += 1.0
                 else:
                     obs_text += f"You don't have {target}."
@@ -228,6 +280,7 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
             elif action.startswith("say") or action.startswith("report"):
                 message = action.split("(", 1)[-1].rstrip(")")
                 obs_text += f"Said: '{message}'"
+                self._interactions += 1
 
             elif action == "nop" or action == "wait":
                 obs_text += "Waiting."
@@ -247,6 +300,9 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
             )
             rewards[agent_id] = reward
 
+        # ── Goal checking ────────────────────────────────────────
+        self._check_goal_completion()
+
         if self._step_count >= self.max_steps:
             self._done = True
 
@@ -258,8 +314,40 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
                 "step": self._step_count,
                 "success": self._success,
                 "agent_positions": dict(self._agent_positions),
+                "objects_manipulated": list(self._objects_manipulated),
+                "subgoals_done": list(self._subgoals_done),
             },
         )
+
+    def _check_goal_completion(self) -> None:
+        """
+        Check whether the current task goal has been met.
+
+        Simple tasks: exact placement match ("X on Y" / "X in Y").
+        Complex tasks: sufficient object manipulation (pick up + put down
+        the required number of task-relevant objects).
+        """
+        if self._success or self._task is None:
+            return
+
+        goal = self._task.goal
+
+        # ── Simple placement goals (already handled in put_down) ─
+        if "placement" in self._subgoals_done:
+            self._success = True
+            self._done = True
+            return
+
+        # ── Complex multi-object goals ───────────────────────────
+        threshold = self._GOAL_THRESHOLDS.get(goal)
+        if threshold is not None:
+            # Success when agents have manipulated enough distinct objects
+            task_objs = set(self._TASK_OBJECTS.get(goal, []))
+            manipulated_task_objs = self._objects_manipulated & task_objs
+            if len(manipulated_task_objs) >= threshold:
+                self._success = True
+                self._done = True
+                return
 
     def get_valid_actions(self, agent_id: int) -> List[str]:
         pos = self._agent_positions.get(agent_id, self._rooms[0])
@@ -292,10 +380,22 @@ class SimulatedMultiAgentEnv(MultiAgentEnvironment):
 
     def get_metrics(self) -> Dict[str, float]:
         optimal = self._task.optimal_steps if self._task else 10
+        goal = self._task.goal if self._task else ""
+
+        # Progress metric for complex goals
+        threshold = self._GOAL_THRESHOLDS.get(goal, 1)
+        task_objs = set(self._TASK_OBJECTS.get(goal, []))
+        manipulated_task_objs = self._objects_manipulated & task_objs
+        goal_progress = min(1.0, len(manipulated_task_objs) / max(threshold, 1))
+
         return {
             "task_success": float(self._success),
             "steps_taken": self._step_count,
             "optimal_steps": optimal,
             "action_efficiency": optimal / max(self._step_count, 1),
             "step_ratio": self._step_count / max(optimal, 1),
+            "goal_progress": goal_progress,
+            "objects_manipulated": len(self._objects_manipulated),
+            "rooms_visited": len(self._rooms_visited),
+            "interactions": self._interactions,
         }

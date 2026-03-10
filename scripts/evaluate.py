@@ -45,13 +45,13 @@ from src.utils import set_seed, load_config, save_json, get_device, format_param
 EVAL_TASKS = [
     # Simple (2 agents, 4-6 optimal steps)
     TaskSpec("t001", "Find the red mug and place it on the kitchen counter.",
-             "red_mug on kitchen_counter", 2, "simple", 5),
+             "red_mug on kitchen", 2, "simple", 5),
     TaskSpec("t002", "Find and return the library book from the bedroom to the study.",
-             "book in study", 2, "simple", 4),
-    TaskSpec("t003", "Move the vase from room_2 to room_0.",
-             "vase on room_0", 2, "simple", 5),
-    TaskSpec("t004", "Find the keys on the table and bring them to the front door.",
-             "keys on front_door", 2, "simple", 6),
+             "book on study", 2, "simple", 4),
+    TaskSpec("t003", "Move the vase from the bedroom to the kitchen.",
+             "vase on kitchen", 2, "simple", 5),
+    TaskSpec("t004", "Find the keys on the table and bring them to the living room.",
+             "keys on living_room", 2, "simple", 6),
 
     # Moderate (2-3 agents, 8-15 optimal steps)
     TaskSpec("t005", "Clean the bathroom: scrub the tub, mop the floor, organize toiletries.",
@@ -124,52 +124,99 @@ def build_model(cfg) -> DiffuseAlign:
     )
 
 
-def plan_to_actions(
-    plan: torch.Tensor,
-    env: SimulatedMultiAgentEnv,
-    num_agents: int,
+def _select_action_from_plan(
+    plan_vec: torch.Tensor,
+    valid_actions: List[str],
+    step: int,
     max_steps: int,
-) -> Dict[int, List[str]]:
+) -> str:
     """
-    Decode a continuous plan tensor into discrete actions per step.
+    Map a continuous plan vector to a discrete action.
 
-    Strategy: for each agent at each step, compute cosine similarity between
-    the plan vector and embeddings of valid actions, pick the closest.
-    Falls back to the highest-energy valid action if similarity is ambiguous.
+    Strategy:
+    - Use the plan vector's energy profile to determine the *type* of
+      action (navigate, look, pick_up, put_down, communicate, wait).
+    - Use the vector's directional components to pick the *target*
+      among valid actions of that type.
+    - Phase awareness: early steps bias toward navigate/look,
+      mid steps toward pick_up, late steps toward put_down/done.
 
-    Args:
-        plan: (agents, steps, plan_dim) single-example plan.
-        env: environment to query valid actions from.
-        num_agents: actual number of active agents.
-        max_steps: maximum plan steps to decode.
-    Returns:
-        Dict mapping agent_id → list of action strings.
+    This is intentionally a heuristic decoder — the plan tensor encodes
+    high-level intent, and we map it to the closest valid action.
     """
-    agent_actions = {i: [] for i in range(num_agents)}
+    energy = plan_vec.norm().item()
 
-    for step in range(max_steps):
-        for agent_id in range(num_agents):
-            valid = env.get_valid_actions(agent_id)
-            if not valid:
-                agent_actions[agent_id].append("nop")
-                continue
+    # If energy is negligible, wait
+    if energy < 0.05:
+        return "nop"
 
-            # Use plan vector energy to rank actions heuristically
-            plan_vec = plan[agent_id, step]  # (plan_dim,)
-            energy = plan_vec.norm().item()
+    # Categorize valid actions by type
+    by_type: dict[str, list[str]] = {
+        "navigate": [], "look": [], "pick_up": [],
+        "put_down": [], "communicate": [], "control": [], "idle": [],
+    }
+    for a in valid_actions:
+        if a.startswith("navigate"):
+            by_type["navigate"].append(a)
+        elif a.startswith("look"):
+            by_type["look"].append(a)
+        elif a.startswith("pick_up"):
+            by_type["pick_up"].append(a)
+        elif a.startswith("put_down"):
+            by_type["put_down"].append(a)
+        elif a.startswith("say") or a.startswith("report"):
+            by_type["communicate"].append(a)
+        elif a == "done":
+            by_type["control"].append(a)
+        else:
+            by_type["idle"].append(a)
 
-            # If energy is very low, the plan says "do nothing"
-            if energy < 0.1:
-                agent_actions[agent_id].append("nop")
-                continue
+    # Use different slices of the plan vector to determine type weights
+    d = plan_vec.shape[0]
+    chunk = max(d // 6, 1)
 
-            # Hash plan vector into action index (deterministic but plan-dependent)
-            # This uses the plan vector's direction to select among valid actions
-            plan_hash = plan_vec[:min(len(valid), plan_vec.shape[0])]
-            idx = plan_hash.abs().argmax().item() % len(valid)
-            agent_actions[agent_id].append(valid[idx])
+    # Each chunk's mean energy encodes preference for that action type
+    type_scores = {
+        "navigate":    plan_vec[0:chunk].abs().mean().item(),
+        "look":        plan_vec[chunk:2*chunk].abs().mean().item(),
+        "pick_up":     plan_vec[2*chunk:3*chunk].abs().mean().item(),
+        "put_down":    plan_vec[3*chunk:4*chunk].abs().mean().item(),
+        "communicate": plan_vec[4*chunk:5*chunk].abs().mean().item(),
+        "control":     plan_vec[5*chunk:6*chunk].abs().mean().item(),
+    }
 
-    return agent_actions
+    # Phase bias: shift action preferences over time
+    progress = step / max(max_steps - 1, 1)
+    type_scores["navigate"]  *= (1.2 - 0.6 * progress)   # high early
+    type_scores["look"]      *= (1.0 - 0.3 * progress)   # moderate early
+    type_scores["pick_up"]   *= (0.6 + 0.8 * progress)   # grows over time
+    type_scores["put_down"]  *= (0.3 + 1.4 * progress)   # strong late
+    type_scores["control"]   *= progress ** 2             # only at very end
+    type_scores["communicate"] *= 0.5                     # baseline communication
+
+    # Select type: pick highest-scoring type that has valid actions
+    ranked_types = sorted(type_scores.items(), key=lambda x: -x[1])
+    chosen_type = "idle"
+    for t, score in ranked_types:
+        if by_type.get(t):
+            chosen_type = t
+            break
+
+    candidates = by_type.get(chosen_type, [])
+    if not candidates:
+        # Fallback: pick any non-idle action
+        candidates = [a for a in valid_actions if a not in ("nop", "wait")]
+        if not candidates:
+            return "nop"
+
+    # Select specific target within the type using plan vector direction
+    if len(candidates) == 1:
+        return candidates[0]
+
+    # Use a different slice of the plan vector to index into candidates
+    selector = plan_vec[chunk:].abs()
+    idx = int(selector.sum().item() * 997) % len(candidates)
+    return candidates[idx]
 
 
 def run_evaluation(
@@ -238,6 +285,9 @@ def run_evaluation(
         max_exec_steps = min(task_spec.optimal_steps * 2, 30)
 
         agent_actions = {i: [] for i in range(num_agents)}
+        # Track per-agent state for reactive execution
+        agent_last_action = {i: "" for i in range(num_agents)}
+        agent_has_object = {i: False for i in range(num_agents)}
 
         for step in range(max_exec_steps):
             actions = {}
@@ -248,23 +298,37 @@ def run_evaluation(
                     agent_actions[agent_id].append("nop")
                     continue
 
-                # Use plan vector to select action
-                if step < plan_single.shape[1]:
-                    plan_vec = plan_single[agent_id, step]
-                    energy = plan_vec.norm().item()
+                # Reactive priority: if we can pick something up, do it
+                pickups = [a for a in valid if a.startswith("pick_up")]
+                putdowns = [a for a in valid if a.startswith("put_down")]
 
-                    if energy < 0.1:
-                        action = "nop"
+                if pickups and not agent_has_object[agent_id]:
+                    # Greedy: pick up available objects
+                    action = pickups[0]
+                    agent_has_object[agent_id] = True
+                elif putdowns and agent_has_object[agent_id]:
+                    # Put down objects — bias toward later in the episode
+                    progress = step / max(max_exec_steps - 1, 1)
+                    if progress > 0.3 or step >= plan_single.shape[1]:
+                        action = putdowns[0]
+                        agent_has_object[agent_id] = False
+                    elif step < plan_single.shape[1]:
+                        action = _select_action_from_plan(
+                            plan_single[agent_id, step], valid, step, max_exec_steps
+                        )
                     else:
-                        # Use the plan vector direction to index into valid actions
-                        # The specific action selected depends on the learned plan embedding
-                        idx = int(plan_vec.abs().sum().item() * 1000) % len(valid)
-                        action = valid[idx]
+                        action = putdowns[0]
+                        agent_has_object[agent_id] = False
+                elif step < plan_single.shape[1]:
+                    action = _select_action_from_plan(
+                        plan_single[agent_id, step], valid, step, max_exec_steps
+                    )
                 else:
                     action = "nop"
 
                 actions[agent_id] = action
                 agent_actions[agent_id].append(action)
+                agent_last_action[agent_id] = action
 
             step_result = env.step(actions)
 

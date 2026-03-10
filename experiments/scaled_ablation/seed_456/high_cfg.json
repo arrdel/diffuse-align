@@ -1,0 +1,65 @@
+{
+  "ablation": "high_cfg",
+  "description": "High classifier-free guidance scale (s=7.0)",
+  "config": {
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 7.0
+  },
+  "metrics": {
+    "task_success_rate": 0.425,
+    "action_efficiency": 1.2520073573130481,
+    "coordination_score": -3.438420496901507,
+    "avg_turn_count": 13.355,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.425,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.19117647058823528,
+    "simple/action_efficiency": 0.6514859731771496,
+    "simple/coordination_score": -0.7623493336728631,
+    "simple/avg_turn_count": 8.338235294117647,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3382352941176471,
+    "moderate/action_efficiency": 0.7936663482716115,
+    "moderate/coordination_score": -2.640974069360292,
+    "moderate/avg_turn_count": 16.205882352941178,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.765625,
+    "complex/action_efficiency": 2.3770486500639656,
+    "complex/coordination_score": -7.1290329370944825,
+    "complex/avg_turn_count": 15.65625,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.9065047681331635,
+  "gen_time_std": 0.06958511131903874,
+  "elapsed_s": 318.69415831565857,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I'm heading to room_3, the study bedroom. | Okay, so now that we have the coffee opener... and what do we want from me?",
+      "Alright, I'm heading to room_0.",
+      "Yeah, I'm good  everything looks out of the place."
+    ],
+    "t002": [
+      "Alright, I've found anything out of place...",
+      "Okay, so I'm moving to room_0.",
+      "Okay, so I'm moving to room_0.",
+      "Alright, I'm heading to room_3, the studyy! | Yeah, that makes sense. So,!"
+    ],
+    "t003": [
+      "Alright, I'm heading to room_3,.",
+      "Alright, I'm heading to room_0 to see what's out of place.",
+      "Alright, I'm heading to room_3, the studyy! | Okay, so now let me think about this... What's our task on the coffee? | Yeah, that makes sense. So, it! The red yyy!",
+      "Alright, I'm heading to room_0."
+    ]
+  }
+}

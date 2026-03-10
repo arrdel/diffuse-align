@@ -1,0 +1,65 @@
+{
+  "ablation": "low_cfg",
+  "description": "Low classifier-free guidance scale (s=1.5)",
+  "config": {
+    "description": "Low classifier-free guidance scale (s=1.5)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 1.5
+  },
+  "metrics": {
+    "task_success_rate": 0.415,
+    "action_efficiency": 1.5185299202574745,
+    "coordination_score": -3.3027448493958165,
+    "avg_turn_count": 12.675,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.415,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.14705882352941177,
+    "simple/action_efficiency": 0.642273045581869,
+    "simple/coordination_score": -0.6591163738222562,
+    "simple/avg_turn_count": 8.323529411764707,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.35294117647058826,
+    "moderate/action_efficiency": 0.9221372838143463,
+    "moderate/coordination_score": -2.490568303979454,
+    "moderate/avg_turn_count": 15.897058823529411,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.765625,
+    "complex/action_efficiency": 3.083220025821129,
+    "complex/coordination_score": -6.97453768419761,
+    "complex/avg_turn_count": 13.875,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.9679806756973267,
+  "gen_time_std": 0.09387480078578236,
+  "elapsed_s": 396.34441924095154,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the bedroom is looking tidy!",
+      "Okay, so I'm moving to room_2.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I's all set now."
+    ],
+    "t002": [
+      "Alright, I'm heading to room_0.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I'm heading around, room_0 looks!",
+      "Alo, I'm in the corner of room_0. | Okay, so I think about the red yyy..."
+    ],
+    "t003": [
+      "Yeah, I'm not seeing anything in here.",
+      "Alright, I'm heading to room_3, the studyy.",
+      "Alright, I'm heading to room_3, everything looks out of the place.",
+      "Okay, so I've found the red mug..."
+    ]
+  }
+}

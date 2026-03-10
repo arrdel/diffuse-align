@@ -1,0 +1,60 @@
+{
+  "ablation": "no_guidance",
+  "description": "No compositional guidance (unconditional diffusion)",
+  "config": {
+    "description": "No compositional guidance (unconditional diffusion)",
+    "use_guidance": false,
+    "active_signals": [],
+    "guidance_scale": 1.0
+  },
+  "metrics": {
+    "task_success_rate": 0.45,
+    "action_efficiency": 1.3333198678213773,
+    "coordination_score": -3.4172258196052314,
+    "avg_turn_count": 12.66,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.45,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.19117647058823528,
+    "simple/action_efficiency": 0.6616888422035482,
+    "simple/coordination_score": -0.6625806383159326,
+    "simple/avg_turn_count": 8.235294117647058,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3382352941176471,
+    "moderate/action_efficiency": 0.9557557014304418,
+    "moderate/coordination_score": -2.372145756012538,
+    "moderate/avg_turn_count": 15.75,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.84375,
+    "complex/action_efficiency": 2.4480897593306894,
+    "complex/coordination_score": -7.454433892292348,
+    "complex/avg_turn_count": 14.078125,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.28028615832328796,
+  "gen_time_std": 0.06486401069935636,
+  "elapsed_s": 204.70189094543457,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm not sure what everything is.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Okay, so I've found the red yy..."
+    ],
+    "t002": [
+      "Alright, I've found anything out of place...",
+      "Yeah, I'm happy to find those objects away. | Okay, so I think about the missing lamp... and let this up.",
+      "Okay, so I'm moving to room_0.",
+      "Alright, I'm heading to room_3, the studyy! | Yeah, that makes sense. So,!"
+    ],
+    "t003": [
+      "Alright, I'm heading to room_3,.",
+      "Alright, I'm heading to room_0 to see what's out of place.",
+      "Alright, I'm heading to room_0.",
+      "Yeah, I'm good with moving on."
+    ]
+  }
+}

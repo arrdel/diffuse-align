@@ -1,0 +1,63 @@
+{
+  "task_success_rate": 0.426,
+  "action_efficiency": 1.4740370831995016,
+  "coordination_score": -3.3299484745961525,
+  "avg_turn_count": 12.874,
+  "delegation_accuracy": 1.0,
+  "avg_bertscore": 0.0,
+  "avg_coherence": 0.0,
+  "functional_fluency_gap": 0.426,
+  "num_episodes": 500,
+  "simple/task_success_rate": 0.17261904761904762,
+  "simple/action_efficiency": 0.6425962430426716,
+  "simple/coordination_score": -0.6031127602556173,
+  "simple/avg_turn_count": 8.363095238095237,
+  "simple/num_episodes": 168,
+  "moderate/task_success_rate": 0.35714285714285715,
+  "moderate/action_efficiency": 0.9052671072518486,
+  "moderate/coordination_score": -2.42485179140973,
+  "moderate/avg_turn_count": 15.666666666666666,
+  "moderate/num_episodes": 168,
+  "complex/task_success_rate": 0.7560975609756098,
+  "complex/action_efficiency": 2.908399382623606,
+  "complex/coordination_score": -7.050464589135963,
+  "complex/avg_turn_count": 14.634146341463415,
+  "complex/num_episodes": 164,
+  "seed": 123,
+  "device": "cuda:0",
+  "elapsed_s": 827.2424359321594,
+  "generation_time_mean": 0.9222138757705689,
+  "generation_time_std": 0.07118882051288712,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm not sure what everything does!",
+      "Okay, so I'm moving away now. moving on to the next task.",
+      "Okay, so I'm moving to the study now."
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2 now.",
+      "Yeah, I'm not sure anything about now.",
+      "Okay, so I've got the red mug...",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!"
+    ],
+    "t003": [
+      "Okay, so I've found the red mug...",
+      "Alright, I'm heading around, everything seems to be tidy.",
+      "Alright, I'm heading to room_3, the study office.",
+      "Alo, I'm heading around, room_0 looks like tidy!"
+    ],
+    "t004": [
+      "Okay, so I've found the red yy...",
+      "Okay, so I've found the red mug...",
+      "Okay, so I'm moving to room_2 now.",
+      "Alright, I'm good when you knows what I say."
+    ],
+    "t005": [
+      "Yeah, I'm good  everything looks out of place.",
+      "Okay, so I've found the red mug...",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm good \u2013 just ripping away the time! | Okay, so I've got the trashpan and moving them around."
+    ]
+  }
+}

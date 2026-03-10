@@ -1,0 +1,64 @@
+{
+  "ablation": "no_coordination",
+  "description": "Remove coordination guidance signal",
+  "config": {
+    "description": "Remove coordination guidance signal",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency"
+    ],
+    "guidance_scale": 3.0
+  },
+  "metrics": {
+    "task_success_rate": 0.415,
+    "action_efficiency": 1.3886504807040796,
+    "coordination_score": -3.357126807947241,
+    "avg_turn_count": 12.8,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.415,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.16176470588235295,
+    "simple/action_efficiency": 0.6300510355657414,
+    "simple/coordination_score": -0.6352654698242934,
+    "simple/avg_turn_count": 8.470588235294118,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.29411764705882354,
+    "moderate/action_efficiency": 0.7826046286470162,
+    "moderate/coordination_score": -2.619007478728499,
+    "moderate/avg_turn_count": 16.426470588235293,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.8125,
+    "complex/action_efficiency": 2.8385861089741944,
+    "complex/coordination_score": -7.033356266997787,
+    "complex/avg_turn_count": 13.546875,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.8260386598110199,
+  "gen_time_std": 0.08210961237968044,
+  "elapsed_s": 367.405743598938,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Okay, so I've found the red yy..."
+    ],
+    "t002": [
+      "Alright, I've found anything out of place...",
+      "Yeah, I'm happy to find those objects away. | Okay, so I think about the missing lamp... and let this up.",
+      "Okay, so I'm moving to room_0.",
+      "Alright, I'm heading to room_3, the studyy! | Yeah, that makes sense. So,!"
+    ],
+    "t003": [
+      "Alright, I'm heading to room_3,.",
+      "Alright, I'm heading to room_0 to see what's out of place.",
+      "Alright, I'm heading to room_3, the studyy! | Okay, so now let me think about this... What's our task on the coffee? | Yeah, that makes sense. So, it! The red yyy!",
+      "Alright, I'm heading to room_0."
+    ]
+  }
+}

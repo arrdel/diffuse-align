@@ -1,0 +1,511 @@
+{
+  "full": {
+    "ablation": "full",
+    "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+    "config": {
+      "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.495,
+      "action_efficiency": 1.5496708341524987,
+      "coordination_score": -3.1583801410164964,
+      "avg_turn_count": 12.545,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.495,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.29411764705882354,
+      "simple/action_efficiency": 0.7045104405398522,
+      "simple/coordination_score": -0.8080213903743314,
+      "simple/avg_turn_count": 7.926470588235294,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.4411764705882353,
+      "moderate/action_efficiency": 0.963376335996305,
+      "moderate/coordination_score": -2.4121029458587513,
+      "moderate/avg_turn_count": 14.852941176470589,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.765625,
+      "complex/action_efficiency": 3.070591656656892,
+      "complex/coordination_score": -6.448555833428903,
+      "complex/avg_turn_count": 15.0,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.972742018699646,
+    "gen_time_std": 0.1364931248770473,
+    "elapsed_s": 356.6299452781677,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "high_cfg": {
+    "ablation": "high_cfg",
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "config": {
+      "description": "High classifier-free guidance scale (s=7.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 7.0
+    },
+    "metrics": {
+      "task_success_rate": 0.465,
+      "action_efficiency": 1.3944101852799389,
+      "coordination_score": -3.509767585645311,
+      "avg_turn_count": 12.245,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.465,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.23529411764705882,
+      "simple/action_efficiency": 0.6853874883286648,
+      "simple/coordination_score": -0.7171860410830998,
+      "simple/avg_turn_count": 8.102941176470589,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.35294117647058826,
+      "moderate/action_efficiency": 0.8738865677868136,
+      "moderate/coordination_score": -2.4809314082915206,
+      "moderate/avg_turn_count": 15.720588235294118,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.828125,
+      "complex/action_efficiency": 2.7008031443771134,
+      "complex/coordination_score": -7.570023915181064,
+      "complex/avg_turn_count": 12.953125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9289100694656373,
+    "gen_time_std": 0.0874485112451859,
+    "elapsed_s": 338.8487503528595,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around, room_0 looks out! | Okay, so the storage is... and what do we think?",
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_0.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now? | Ho, nice! The bedroom looks like... yeah,! That's look out of red.",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "low_cfg": {
+    "ablation": "low_cfg",
+    "description": "Low classifier-free guidance scale (s=1.5)",
+    "config": {
+      "description": "Low classifier-free guidance scale (s=1.5)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 1.5
+    },
+    "metrics": {
+      "task_success_rate": 0.395,
+      "action_efficiency": 1.39906640997891,
+      "coordination_score": -3.267466107748461,
+      "avg_turn_count": 12.865,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.395,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.1323529411764706,
+      "simple/action_efficiency": 0.6139005602240896,
+      "simple/coordination_score": -0.6689749384602325,
+      "simple/avg_turn_count": 8.632352941176471,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3088235294117647,
+      "moderate/action_efficiency": 0.8281017353465451,
+      "moderate/coordination_score": -2.3336951603279457,
+      "moderate/avg_turn_count": 16.279411764705884,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.765625,
+      "complex/action_efficiency": 2.8399550921402943,
+      "complex/coordination_score": -7.0204946067515,
+      "complex/avg_turn_count": 13.734375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9400491774082184,
+    "gen_time_std": 0.18458992638831073,
+    "elapsed_s": 342.27331280708313,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks!",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now?",
+        "Okay, so I've see anything around... let take a look around."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good \u2013 just ripping away the clutter!",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "no_coordination": {
+    "ablation": "no_coordination",
+    "description": "Remove coordination guidance signal",
+    "config": {
+      "description": "Remove coordination guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.405,
+      "action_efficiency": 1.2630649333905575,
+      "coordination_score": -3.366919408936437,
+      "avg_turn_count": 13.29,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.405,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.1323529411764706,
+      "simple/action_efficiency": 0.6313725490196077,
+      "simple/coordination_score": -0.7466938290467703,
+      "simple/avg_turn_count": 8.455882352941176,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3088235294117647,
+      "moderate/action_efficiency": 0.8038549733618938,
+      "moderate/coordination_score": -2.533375727742077,
+      "moderate/avg_turn_count": 16.176470588235293,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.796875,
+      "complex/action_efficiency": 2.4221486743151472,
+      "complex/coordination_score": -7.036549248838215,
+      "complex/avg_turn_count": 15.359375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.7948934173583985,
+    "gen_time_std": 0.10886367400419276,
+    "elapsed_s": 312.42290568351746,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "no_efficiency": {
+    "ablation": "no_efficiency",
+    "description": "Remove efficiency guidance signal",
+    "config": {
+      "description": "Remove efficiency guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.425,
+      "action_efficiency": 1.501237033729496,
+      "coordination_score": -3.371876239123345,
+      "avg_turn_count": 12.22,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.425,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.11764705882352941,
+      "simple/action_efficiency": 0.6006504116798235,
+      "simple/coordination_score": -0.5830728503522621,
+      "simple/avg_turn_count": 8.75,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.8154962876416163,
+      "moderate/coordination_score": -2.5423363797390617,
+      "moderate/avg_turn_count": 16.08823529411765,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.859375,
+      "complex/action_efficiency": 3.1867098623756442,
+      "complex/coordination_score": -7.216365940288422,
+      "complex/avg_turn_count": 11.796875,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9546216261386872,
+    "gen_time_std": 0.08059540364982887,
+    "elapsed_s": 322.3634572029114,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "no_guidance": {
+    "ablation": "no_guidance",
+    "description": "No compositional guidance (unconditional diffusion)",
+    "config": {
+      "description": "No compositional guidance (unconditional diffusion)",
+      "use_guidance": false,
+      "active_signals": [],
+      "guidance_scale": 1.0
+    },
+    "metrics": {
+      "task_success_rate": 0.45,
+      "action_efficiency": 1.3994828304510207,
+      "coordination_score": -3.320762536985532,
+      "avg_turn_count": 12.69,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.45,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.19117647058823528,
+      "simple/action_efficiency": 0.6627456285544521,
+      "simple/coordination_score": -0.625228121551651,
+      "simple/avg_turn_count": 8.264705882352942,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.39705882352941174,
+      "moderate/action_efficiency": 0.8878629430475633,
+      "moderate/coordination_score": -2.5396836294560976,
+      "moderate/avg_turn_count": 15.235294117647058,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.78125,
+      "complex/action_efficiency": 2.725862237832299,
+      "complex/coordination_score": -7.0146641926340525,
+      "complex/avg_turn_count": 14.6875,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.302995548248291,
+    "gen_time_std": 0.05767015879974299,
+    "elapsed_s": 235.44446754455566,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Yeah, I'm not sure anything to worry about.",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks!",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now?",
+        "Okay, so I've see anything around... let take a look around."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good \u2013 just ripping away the clutter!",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "no_safety": {
+    "ablation": "no_safety",
+    "description": "Remove safety guidance signal",
+    "config": {
+      "description": "Remove safety guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.47,
+      "action_efficiency": 1.3991914571067048,
+      "coordination_score": -3.3581495584523835,
+      "avg_turn_count": 12.395,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.47,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.19117647058823528,
+      "simple/action_efficiency": 0.6610262286732874,
+      "simple/coordination_score": -0.6402310924369746,
+      "simple/avg_turn_count": 8.235294117647058,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.47058823529411764,
+      "moderate/action_efficiency": 0.9664193217393908,
+      "moderate/coordination_score": -2.5191243253094466,
+      "moderate/avg_turn_count": 14.617647058823529,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.765625,
+      "complex/action_efficiency": 2.6433124061449815,
+      "complex/coordination_score": -7.137402238808126,
+      "complex/avg_turn_count": 14.453125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.7265622234344482,
+    "gen_time_std": 0.07122825548255043,
+    "elapsed_s": 283.3245327472687,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  },
+  "task_only": {
+    "ablation": "task_only",
+    "description": "Task completion guidance only",
+    "config": {
+      "description": "Task completion guidance only",
+      "use_guidance": true,
+      "active_signals": [
+        "task"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.45,
+      "action_efficiency": 1.3212283373446296,
+      "coordination_score": -3.3369037749703,
+      "avg_turn_count": 12.84,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.45,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.20588235294117646,
+      "simple/action_efficiency": 0.6690126050420168,
+      "simple/coordination_score": -0.6337073465749936,
+      "simple/avg_turn_count": 8.264705882352942,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.4117647058823529,
+      "moderate/action_efficiency": 0.805566169903267,
+      "moderate/coordination_score": -2.601693563511197,
+      "moderate/avg_turn_count": 15.073529411764707,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.75,
+      "complex/action_efficiency": 2.5620986058226043,
+      "complex/coordination_score": -6.990210829815609,
+      "complex/avg_turn_count": 15.328125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.5928506803512573,
+    "gen_time_std": 0.05481553631945486,
+    "elapsed_s": 261.2913088798523,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading around the corner.",
+        "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+        "Alright, I'm heading to room_3, the studyy!"
+      ],
+      "t002": [
+        "Alright, I'm heading to square out the room.",
+        "Okay, so I'm moving to room_0.",
+        "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+        "Okay, so I've see anything around... let me check our options."
+      ],
+      "t003": [
+        "Alright, I'm heading around the corner.",
+        "Yeah, I'm good  everything looks out of place.",
+        "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+        "Alo, I'm heading around when you seems out of the floor."
+      ]
+    }
+  }
+}

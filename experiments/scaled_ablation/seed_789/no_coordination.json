@@ -1,0 +1,64 @@
+{
+  "ablation": "no_coordination",
+  "description": "Remove coordination guidance signal",
+  "config": {
+    "description": "Remove coordination guidance signal",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency"
+    ],
+    "guidance_scale": 3.0
+  },
+  "metrics": {
+    "task_success_rate": 0.405,
+    "action_efficiency": 1.2630649333905575,
+    "coordination_score": -3.366919408936437,
+    "avg_turn_count": 13.29,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.405,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.1323529411764706,
+    "simple/action_efficiency": 0.6313725490196077,
+    "simple/coordination_score": -0.7466938290467703,
+    "simple/avg_turn_count": 8.455882352941176,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3088235294117647,
+    "moderate/action_efficiency": 0.8038549733618938,
+    "moderate/coordination_score": -2.533375727742077,
+    "moderate/avg_turn_count": 16.176470588235293,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.796875,
+    "complex/action_efficiency": 2.4221486743151472,
+    "complex/coordination_score": -7.036549248838215,
+    "complex/avg_turn_count": 15.359375,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.7948934173583985,
+  "gen_time_std": 0.10886367400419276,
+  "elapsed_s": 312.42290568351746,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Okay, so I've found the red yyy...",
+      "Alright, I'm heading around the corner.",
+      "Alright, I'm heading around, room_0 looks! | Okay, so the fridge is clear, and let me count:",
+      "Alright, I'm heading to room_3, the studyy!"
+    ],
+    "t002": [
+      "Alright, I'm heading to square out the room.",
+      "Okay, so I'm moving to room_0.",
+      "Yeah, I'm good \u2013 just ripping away the clutter. | Alright, so I've see anything anything out of place...",
+      "Okay, so I've see anything around... let me check our options."
+    ],
+    "t003": [
+      "Alright, I'm heading around the corner.",
+      "Yeah, I'm good  everything looks out of place.",
+      "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+      "Alo, I'm heading around when you seems out of the floor."
+    ]
+  }
+}

@@ -48,5 +48,8 @@ Thumbs.db
 
 # Temporary files
 /tmp/
+
+# Paper (submitted separately, not tracked in public repo)
+paper/
 *.tmp
 improvements.md

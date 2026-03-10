@@ -1,0 +1,60 @@
+{
+  "ablation": "no_guidance",
+  "description": "No compositional guidance (unconditional diffusion)",
+  "config": {
+    "description": "No compositional guidance (unconditional diffusion)",
+    "use_guidance": false,
+    "active_signals": [],
+    "guidance_scale": 1.0
+  },
+  "metrics": {
+    "task_success_rate": 0.45,
+    "action_efficiency": 1.3994828304510207,
+    "coordination_score": -3.320762536985532,
+    "avg_turn_count": 12.69,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.45,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.19117647058823528,
+    "simple/action_efficiency": 0.6627456285544521,
+    "simple/coordination_score": -0.625228121551651,
+    "simple/avg_turn_count": 8.264705882352942,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.39705882352941174,
+    "moderate/action_efficiency": 0.8878629430475633,
+    "moderate/coordination_score": -2.5396836294560976,
+    "moderate/avg_turn_count": 15.235294117647058,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.78125,
+    "complex/action_efficiency": 2.725862237832299,
+    "complex/coordination_score": -7.0146641926340525,
+    "complex/avg_turn_count": 14.6875,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.302995548248291,
+  "gen_time_std": 0.05767015879974299,
+  "elapsed_s": 235.44446754455566,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Yeah, I'm not sure anything to worry about.",
+      "Alright, I'm heading around the corner.",
+      "Alright, I'm heading around, room_0 looks!",
+      "Alright, I'm heading to room_3, the studyy!"
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2 now.",
+      "Okay, so I'm moving to room_0.",
+      "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now?",
+      "Okay, so I've see anything around... let take a look around."
+    ],
+    "t003": [
+      "Alright, I'm heading around the corner.",
+      "Yeah, I'm good \u2013 just ripping away the clutter!",
+      "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+      "Alo, I'm heading around when you seems out of the floor."
+    ]
+  }
+}

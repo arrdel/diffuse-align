@@ -1,0 +1,511 @@
+{
+  "full": {
+    "ablation": "full",
+    "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+    "config": {
+      "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.405,
+      "action_efficiency": 1.2725872173996418,
+      "coordination_score": -3.318911625407952,
+      "avg_turn_count": 13.47,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.405,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.20588235294117646,
+      "simple/action_efficiency": 0.6634331763008233,
+      "simple/coordination_score": -0.6416746243952126,
+      "simple/avg_turn_count": 8.25,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3088235294117647,
+      "moderate/action_efficiency": 0.887335748364022,
+      "moderate/coordination_score": -2.3286517847629216,
+      "moderate/avg_turn_count": 16.264705882352942,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.71875,
+      "complex/action_efficiency": 2.329143071917482,
+      "complex/coordination_score": -7.215627019669334,
+      "complex/avg_turn_count": 16.046875,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9066889309883117,
+    "gen_time_std": 0.08429180574457243,
+    "elapsed_s": 343.79364943504333,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "high_cfg": {
+    "ablation": "high_cfg",
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "config": {
+      "description": "High classifier-free guidance scale (s=7.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 7.0
+    },
+    "metrics": {
+      "task_success_rate": 0.41,
+      "action_efficiency": 1.401061280795801,
+      "coordination_score": -3.419062449531606,
+      "avg_turn_count": 12.97,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.41,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.19117647058823528,
+      "simple/action_efficiency": 0.6571248196248197,
+      "simple/coordination_score": -0.6080346532552414,
+      "simple/avg_turn_count": 8.235294117647058,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.8832114972685907,
+      "moderate/coordination_score": -2.518794229607378,
+      "moderate/avg_turn_count": 15.985294117647058,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.734375,
+      "complex/action_efficiency": 2.7417091657876296,
+      "complex/coordination_score": -7.362314466744735,
+      "complex/avg_turn_count": 14.796875,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9180174779891968,
+    "gen_time_std": 0.07438617655861475,
+    "elapsed_s": 332.2361915111542,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now. | Okay, so I've got the trashpan and moving them out of the place.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom is looking tidy! | Okay, so I think that these new products would to be tidy."
+      ],
+      "t003": [
+        "Okay, so I've taken stock of the situation...",
+        "Alright, I'm heading around, everything seems to be.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "low_cfg": {
+    "ablation": "low_cfg",
+    "description": "Low classifier-free guidance scale (s=1.5)",
+    "config": {
+      "description": "Low classifier-free guidance scale (s=1.5)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 1.5
+    },
+    "metrics": {
+      "task_success_rate": 0.445,
+      "action_efficiency": 1.3298163114935175,
+      "coordination_score": -3.410442992492258,
+      "avg_turn_count": 12.955,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.445,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.25,
+      "simple/action_efficiency": 0.707381588999236,
+      "simple/coordination_score": -0.6735814022578729,
+      "simple/avg_turn_count": 7.852941176470588,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3088235294117647,
+      "moderate/action_efficiency": 0.8669827913340022,
+      "moderate/coordination_score": -2.3028121364410294,
+      "moderate/avg_turn_count": 16.279411764705884,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.796875,
+      "complex/action_efficiency": 2.4829138193131755,
+      "complex/coordination_score": -7.49521621667072,
+      "complex/avg_turn_count": 14.84375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9660111284255981,
+    "gen_time_std": 0.08174873694896052,
+    "elapsed_s": 359.91518211364746,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to the study now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "no_coordination": {
+    "ablation": "no_coordination",
+    "description": "Remove coordination guidance signal",
+    "config": {
+      "description": "Remove coordination guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.4,
+      "action_efficiency": 1.2678780007140822,
+      "coordination_score": -3.417268672491827,
+      "avg_turn_count": 13.415,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.4,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.16176470588235295,
+      "simple/action_efficiency": 0.6391164799253034,
+      "simple/coordination_score": -0.6139445929887107,
+      "simple/avg_turn_count": 8.397058823529411,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3088235294117647,
+      "moderate/action_efficiency": 0.8097730741101712,
+      "moderate/coordination_score": -2.4535148303405454,
+      "moderate/avg_turn_count": 16.352941176470587,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.75,
+      "complex/action_efficiency": 2.4226736010688157,
+      "complex/coordination_score": -7.419788964249625,
+      "complex/avg_turn_count": 15.625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.8236283302307129,
+    "gen_time_std": 0.07261167051637633,
+    "elapsed_s": 321.33518862724304,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "no_efficiency": {
+    "ablation": "no_efficiency",
+    "description": "Remove efficiency guidance signal",
+    "config": {
+      "description": "Remove efficiency guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.425,
+      "action_efficiency": 1.3468903865471287,
+      "coordination_score": -3.361997850026538,
+      "avg_turn_count": 13.22,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.425,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.2647058823529412,
+      "simple/action_efficiency": 0.7207420847126729,
+      "simple/coordination_score": -0.5952211187505305,
+      "simple/avg_turn_count": 7.75,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.959449623051426,
+      "moderate/coordination_score": -2.265692381120468,
+      "moderate/avg_turn_count": 15.955882352941176,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.703125,
+      "complex/action_efficiency": 2.423828768460422,
+      "complex/coordination_score": -7.466522687719996,
+      "complex/avg_turn_count": 16.125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9502911305427552,
+    "gen_time_std": 0.08185727901343108,
+    "elapsed_s": 336.3387725353241,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "no_guidance": {
+    "ablation": "no_guidance",
+    "description": "No compositional guidance (unconditional diffusion)",
+    "config": {
+      "description": "No compositional guidance (unconditional diffusion)",
+      "use_guidance": false,
+      "active_signals": [],
+      "guidance_scale": 1.0
+    },
+    "metrics": {
+      "task_success_rate": 0.42,
+      "action_efficiency": 1.4006635224796988,
+      "coordination_score": -3.263346136434372,
+      "avg_turn_count": 12.825,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.42,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.16176470588235295,
+      "simple/action_efficiency": 0.6280345471521942,
+      "simple/coordination_score": -0.6358718487394958,
+      "simple/avg_turn_count": 8.455882352941176,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.36764705882352944,
+      "moderate/action_efficiency": 0.9169381656405876,
+      "moderate/coordination_score": -2.473661213594172,
+      "moderate/avg_turn_count": 15.294117647058824,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.75,
+      "complex/action_efficiency": 2.735540000406728,
+      "complex/coordination_score": -6.894077797627889,
+      "complex/avg_turn_count": 14.84375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.28982876539230346,
+    "gen_time_std": 0.062137853539887766,
+    "elapsed_s": 208.68403387069702,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to finding those files and put them away.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alright, I'm heading around the corner. | Okay, so let me check: clean up the clutter and pencils."
+      ]
+    }
+  },
+  "no_safety": {
+    "ablation": "no_safety",
+    "description": "Remove safety guidance signal",
+    "config": {
+      "description": "Remove safety guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.41,
+      "action_efficiency": 1.3344040383645313,
+      "coordination_score": -3.2750419307915353,
+      "avg_turn_count": 13.24,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.41,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.16176470588235295,
+      "simple/action_efficiency": 0.639708534929123,
+      "simple/coordination_score": -0.6495952168746286,
+      "simple/avg_turn_count": 8.397058823529411,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.7850112281989444,
+      "moderate/coordination_score": -2.469966206179441,
+      "moderate/avg_turn_count": 16.235294117647058,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.765625,
+      "complex/action_efficiency": 2.6562478715655877,
+      "complex/coordination_score": -6.919972021728599,
+      "complex/avg_turn_count": 15.203125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.8056192696094513,
+    "gen_time_std": 0.07370440746442139,
+    "elapsed_s": 371.0058653354645,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  },
+  "task_only": {
+    "ablation": "task_only",
+    "description": "Task completion guidance only",
+    "config": {
+      "description": "Task completion guidance only",
+      "use_guidance": true,
+      "active_signals": [
+        "task"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.41,
+      "action_efficiency": 1.330316857712727,
+      "coordination_score": -3.422839065075542,
+      "avg_turn_count": 13.21,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.41,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.23529411764705882,
+      "simple/action_efficiency": 0.6862554112554111,
+      "simple/coordination_score": -0.8560049019607843,
+      "simple/avg_turn_count": 8.044117647058824,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.29411764705882354,
+      "moderate/action_efficiency": 0.9739531686114731,
+      "moderate/coordination_score": -2.2602983929757285,
+      "moderate/avg_turn_count": 15.852941176470589,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.71875,
+      "complex/action_efficiency": 2.393268564243707,
+      "complex/coordination_score": -7.385299827491024,
+      "complex/avg_turn_count": 15.890625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.6037225806713105,
+    "gen_time_std": 0.06530906422549701,
+    "elapsed_s": 274.5885503292084,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the studyy!",
+        "Yeah, I'm not sure what everything does!",
+        "Okay, so I'm moving away now. moving on to the next task.",
+        "Okay, so I'm moving to the study now."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2 now.",
+        "Yeah, I'm not sure anything about now.",
+        "Okay, so I've got the red mug...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ],
+      "t003": [
+        "Okay, so I've found the red mug...",
+        "Alright, I'm heading around, everything seems to be tidy.",
+        "Alright, I'm heading to room_3, the study office.",
+        "Alo, I'm heading around, room_0 looks like tidy!"
+      ]
+    }
+  }
+}

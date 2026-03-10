@@ -1,0 +1,65 @@
+{
+  "ablation": "high_cfg",
+  "description": "High classifier-free guidance scale (s=7.0)",
+  "config": {
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 7.0
+  },
+  "metrics": {
+    "task_success_rate": 0.405,
+    "action_efficiency": 1.4526821708709496,
+    "coordination_score": -3.221209559949867,
+    "avg_turn_count": 13.14,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.405,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.17647058823529413,
+    "simple/action_efficiency": 0.6355508870214752,
+    "simple/coordination_score": -0.5753204312027842,
+    "simple/avg_turn_count": 8.470588235294118,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3235294117647059,
+    "moderate/action_efficiency": 0.9882963674258519,
+    "moderate/coordination_score": -2.3603437873413746,
+    "moderate/avg_turn_count": 15.720588235294118,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.734375,
+    "complex/action_efficiency": 2.814294076121432,
+    "complex/coordination_score": -6.947136642640164,
+    "complex/avg_turn_count": 15.359375,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.8678713262081146,
+  "gen_time_std": 0.06897700765810791,
+  "elapsed_s": 280.2632803916931,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the bedroom is looking tidy already!",
+      "Okay, so I'm moving to the study now.",
+      "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+      "Okay, so I've found the red mug..."
+    ],
+    "t002": [
+      "Yeah, I'm good  everything jumps out! | Okay, so I've found the red mug...",
+      "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+      "Okay, so I've found the red yyy...",
+      "Alright, I'm heading to room_3, the bedroom."
+    ],
+    "t003": [
+      "Yeah, I'm not sure what everything is so...",
+      "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+      "Okay, so I've see anything around...",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!"
+    ]
+  }
+}

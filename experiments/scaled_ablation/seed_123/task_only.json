@@ -1,0 +1,62 @@
+{
+  "ablation": "task_only",
+  "description": "Task completion guidance only",
+  "config": {
+    "description": "Task completion guidance only",
+    "use_guidance": true,
+    "active_signals": [
+      "task"
+    ],
+    "guidance_scale": 3.0
+  },
+  "metrics": {
+    "task_success_rate": 0.41,
+    "action_efficiency": 1.330316857712727,
+    "coordination_score": -3.422839065075542,
+    "avg_turn_count": 13.21,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.41,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.23529411764705882,
+    "simple/action_efficiency": 0.6862554112554111,
+    "simple/coordination_score": -0.8560049019607843,
+    "simple/avg_turn_count": 8.044117647058824,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.29411764705882354,
+    "moderate/action_efficiency": 0.9739531686114731,
+    "moderate/coordination_score": -2.2602983929757285,
+    "moderate/avg_turn_count": 15.852941176470589,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.71875,
+    "complex/action_efficiency": 2.393268564243707,
+    "complex/coordination_score": -7.385299827491024,
+    "complex/avg_turn_count": 15.890625,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.6037225806713105,
+  "gen_time_std": 0.06530906422549701,
+  "elapsed_s": 274.5885503292084,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm not sure what everything does!",
+      "Okay, so I'm moving away now. moving on to the next task.",
+      "Okay, so I'm moving to the study now."
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2 now.",
+      "Yeah, I'm not sure anything about now.",
+      "Okay, so I've got the red mug...",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!"
+    ],
+    "t003": [
+      "Okay, so I've found the red mug...",
+      "Alright, I'm heading around, everything seems to be tidy.",
+      "Alright, I'm heading to room_3, the study office.",
+      "Alo, I'm heading around, room_0 looks like tidy!"
+    ]
+  }
+}

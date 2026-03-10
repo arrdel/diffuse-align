@@ -1,0 +1,63 @@
+{
+  "task_success_rate": 0.436,
+  "action_efficiency": 1.5411595569062289,
+  "coordination_score": -3.273438506801649,
+  "avg_turn_count": 12.686,
+  "delegation_accuracy": 1.0,
+  "avg_bertscore": 0.0,
+  "avg_coherence": 0.0,
+  "functional_fluency_gap": 0.436,
+  "num_episodes": 500,
+  "simple/task_success_rate": 0.19047619047619047,
+  "simple/action_efficiency": 0.6502014189514188,
+  "simple/coordination_score": -0.6339822545179687,
+  "simple/avg_turn_count": 8.339285714285714,
+  "simple/num_episodes": 168,
+  "moderate/task_success_rate": 0.35119047619047616,
+  "moderate/action_efficiency": 0.965967863497994,
+  "moderate/coordination_score": -2.4526942683434556,
+  "moderate/avg_turn_count": 15.422619047619047,
+  "moderate/num_episodes": 168,
+  "complex/task_success_rate": 0.774390243902439,
+  "complex/action_efficiency": 3.043069140253738,
+  "complex/coordination_score": -6.818034131464057,
+  "complex/avg_turn_count": 14.335365853658537,
+  "complex/num_episodes": 164,
+  "seed": 42,
+  "device": "cuda:0",
+  "elapsed_s": 817.8001387119293,
+  "generation_time_mean": 0.9215582003593444,
+  "generation_time_std": 0.06308361872941712,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the bedroom is looking tidy!",
+      "Okay, so I'm moving to room_2.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I's all set now."
+    ],
+    "t002": [
+      "Alright, I'm heading to room_0.",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Alright, I'm heading around, room_0 looks!",
+      "Alo, I'm in the place as I know what to do next."
+    ],
+    "t003": [
+      "Yeah, I'm not seeing anything in here.",
+      "Alright, I'm heading to room_3, the studyy.",
+      "Alright, I'm heading to room_3, everything looks out of the place.",
+      "Okay, so I've found the red mug..."
+    ],
+    "t004": [
+      "Alright, I'm heading to room_0.",
+      "Alright, I'm heading to room_0, now what's our task?",
+      "Okay, so I've see the spot... and it looks out of that report! | Yeah, I'm everything! Now, let me check this up.",
+      "Alright, so the room seems to be ..."
+    ],
+    "t005": [
+      "Alright, I'm heading to room_3, the bedroom looks tidy! | Okay, so now let me check: three, four of neat.",
+      "Yeah, I'm not sure anything in here.",
+      "Okay, so I've see anything around... let check this lamp real quick.",
+      "Yeah, I've got everything away!"
+    ]
+  }
+}

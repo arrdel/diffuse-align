@@ -1,0 +1,65 @@
+{
+  "ablation": "high_cfg",
+  "description": "High classifier-free guidance scale (s=7.0)",
+  "config": {
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 7.0
+  },
+  "metrics": {
+    "task_success_rate": 0.41,
+    "action_efficiency": 1.401061280795801,
+    "coordination_score": -3.419062449531606,
+    "avg_turn_count": 12.97,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.41,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.19117647058823528,
+    "simple/action_efficiency": 0.6571248196248197,
+    "simple/coordination_score": -0.6080346532552414,
+    "simple/avg_turn_count": 8.235294117647058,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3235294117647059,
+    "moderate/action_efficiency": 0.8832114972685907,
+    "moderate/coordination_score": -2.518794229607378,
+    "moderate/avg_turn_count": 15.985294117647058,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.734375,
+    "complex/action_efficiency": 2.7417091657876296,
+    "complex/coordination_score": -7.362314466744735,
+    "complex/avg_turn_count": 14.796875,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.9180174779891968,
+  "gen_time_std": 0.07438617655861475,
+  "elapsed_s": 332.2361915111542,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm not sure what everything does!",
+      "Okay, so I'm moving away now. moving on to the next task.",
+      "Okay, so I'm moving to the study now."
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2 now.",
+      "Yeah, I'm not sure anything about now. | Okay, so I've got the trashpan and moving them out of the place.",
+      "Okay, so I've got the red mug...",
+      "Alright, I'm heading to room_3, the bedroom is looking tidy! | Okay, so I think that these new products would to be tidy."
+    ],
+    "t003": [
+      "Okay, so I've taken stock of the situation...",
+      "Alright, I'm heading around, everything seems to be.",
+      "Alright, I'm heading to room_3, the study office.",
+      "Alo, I'm heading around, room_0 looks like tidy!"
+    ]
+  }
+}

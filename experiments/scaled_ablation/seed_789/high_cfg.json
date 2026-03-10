@@ -1,0 +1,65 @@
+{
+  "ablation": "high_cfg",
+  "description": "High classifier-free guidance scale (s=7.0)",
+  "config": {
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 7.0
+  },
+  "metrics": {
+    "task_success_rate": 0.465,
+    "action_efficiency": 1.3944101852799389,
+    "coordination_score": -3.509767585645311,
+    "avg_turn_count": 12.245,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.465,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.23529411764705882,
+    "simple/action_efficiency": 0.6853874883286648,
+    "simple/coordination_score": -0.7171860410830998,
+    "simple/avg_turn_count": 8.102941176470589,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.35294117647058826,
+    "moderate/action_efficiency": 0.8738865677868136,
+    "moderate/coordination_score": -2.4809314082915206,
+    "moderate/avg_turn_count": 15.720588235294118,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.828125,
+    "complex/action_efficiency": 2.7008031443771134,
+    "complex/coordination_score": -7.570023915181064,
+    "complex/avg_turn_count": 12.953125,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.9289100694656373,
+  "gen_time_std": 0.0874485112451859,
+  "elapsed_s": 338.8487503528595,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Okay, so I've found the red yyy...",
+      "Alright, I'm heading around, room_0 looks out! | Okay, so the storage is... and what do we think?",
+      "Okay, so I've found the red mug...",
+      "Alright, I'm heading to room_3, the studyy!"
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_0.",
+      "Okay, so I'm moving to room_0.",
+      "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now? | Ho, nice! The bedroom looks like... yeah,! That's look out of red.",
+      "Okay, so I've see anything around... let me check our options."
+    ],
+    "t003": [
+      "Alright, I'm heading around the corner.",
+      "Yeah, I'm good  everything looks out of place.",
+      "Okay, so I've see the red yy...",
+      "Alo, I'm heading around when you seems out of the floor."
+    ]
+  }
+}

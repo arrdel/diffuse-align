@@ -1,0 +1,64 @@
+{
+  "ablation": "no_safety",
+  "description": "Remove safety guidance signal",
+  "config": {
+    "description": "Remove safety guidance signal",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 3.0
+  },
+  "metrics": {
+    "task_success_rate": 0.415,
+    "action_efficiency": 1.6071485026153758,
+    "coordination_score": -3.1629022019303363,
+    "avg_turn_count": 12.645,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.415,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.19117647058823528,
+    "simple/action_efficiency": 0.650720439691028,
+    "simple/coordination_score": -0.5016525549613784,
+    "simple/avg_turn_count": 8.294117647058824,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.36764705882352944,
+    "moderate/action_efficiency": 1.1039461868591351,
+    "moderate/coordination_score": -2.33929799813291,
+    "moderate/avg_turn_count": 15.220588235294118,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.703125,
+    "complex/action_efficiency": 3.1580057799635006,
+    "complex/coordination_score": -6.865559418369621,
+    "complex/avg_turn_count": 14.53125,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.729364926815033,
+  "gen_time_std": 0.06501811513825785,
+  "elapsed_s": 289.4941637516022,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Alo, I've found that red ock and sound what looks like.",
+      "Okay, so I'm moving to the study now.",
+      "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+      "Okay, so I've found the red mug..."
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2...",
+      "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+      "Okay, so I've found the red yyy...",
+      "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+    ],
+    "t003": [
+      "Yeah, I'm not sure what everything is so...",
+      "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+      "Okay, so I've see anything around...",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!"
+    ]
+  }
+}

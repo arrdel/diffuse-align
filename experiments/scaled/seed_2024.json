@@ -1,0 +1,63 @@
+{
+  "task_success_rate": 0.422,
+  "action_efficiency": 1.561586605537117,
+  "coordination_score": -3.2693981758798225,
+  "avg_turn_count": 12.766,
+  "delegation_accuracy": 1.0,
+  "avg_bertscore": 0.0,
+  "avg_coherence": 0.0,
+  "functional_fluency_gap": 0.422,
+  "num_episodes": 500,
+  "simple/task_success_rate": 0.19642857142857142,
+  "simple/action_efficiency": 0.6603962670926956,
+  "simple/coordination_score": -0.5537885229849515,
+  "simple/avg_turn_count": 8.19047619047619,
+  "simple/num_episodes": 168,
+  "moderate/task_success_rate": 0.31547619047619047,
+  "moderate/action_efficiency": 0.9891955944034669,
+  "moderate/coordination_score": -2.460035625044194,
+  "moderate/avg_turn_count": 15.821428571428571,
+  "moderate/num_episodes": 168,
+  "complex/task_success_rate": 0.7621951219512195,
+  "complex/action_efficiency": 3.0711089636414823,
+  "complex/coordination_score": -6.88034531140863,
+  "complex/avg_turn_count": 14.323170731707316,
+  "complex/num_episodes": 164,
+  "seed": 2024,
+  "device": "cuda:1",
+  "elapsed_s": 770.5189852714539,
+  "generation_time_mean": 0.9424970836639405,
+  "generation_time_std": 0.07346722850444647,
+  "sample_dialogues": {
+    "t001": [
+      "Alo, I've found that red ock and sound what looks like.",
+      "Okay, so I'm moving to the study now.",
+      "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+      "Okay, so I've found the red mug..."
+    ],
+    "t002": [
+      "Okay, so I'm moving to room_2...",
+      "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+      "Okay, so I've found the red yyy...",
+      "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+    ],
+    "t003": [
+      "Yeah, I'm not sure what everything is so...",
+      "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+      "Okay, so I've see anything around...",
+      "Alright, I'm heading to room_3, the bedroom looks tidy!"
+    ],
+    "t004": [
+      "Alright, I'm heading to room_3, the studyy!",
+      "Yeah, I'm not sure anything out of place.",
+      "Alo, I'm heading around when you move out of the bedroom. | Okay, so now that we check the redyy lamp...",
+      "Okay, so I've see anything away..."
+    ],
+    "t005": [
+      "Alright, I'm heading to room_3, the bedroom looks tidy! | Okay, so now let me think about this. What are our updates on the meeting?",
+      "Alright, I'm heading around the corner. | Yeah, that makes sense. So,!",
+      "Alright, I'm heading to room_3, the studyy!",
+      "Okay, so I've found the redy... and it looks like pretty tidy!"
+    ]
+  }
+}

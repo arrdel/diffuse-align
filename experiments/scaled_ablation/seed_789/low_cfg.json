@@ -1,0 +1,65 @@
+{
+  "ablation": "low_cfg",
+  "description": "Low classifier-free guidance scale (s=1.5)",
+  "config": {
+    "description": "Low classifier-free guidance scale (s=1.5)",
+    "use_guidance": true,
+    "active_signals": [
+      "task",
+      "safety",
+      "efficiency",
+      "coordination"
+    ],
+    "guidance_scale": 1.5
+  },
+  "metrics": {
+    "task_success_rate": 0.395,
+    "action_efficiency": 1.39906640997891,
+    "coordination_score": -3.267466107748461,
+    "avg_turn_count": 12.865,
+    "delegation_accuracy": 1.0,
+    "avg_bertscore": 0.0,
+    "avg_coherence": 0.0,
+    "functional_fluency_gap": 0.395,
+    "num_episodes": 200,
+    "simple/task_success_rate": 0.1323529411764706,
+    "simple/action_efficiency": 0.6139005602240896,
+    "simple/coordination_score": -0.6689749384602325,
+    "simple/avg_turn_count": 8.632352941176471,
+    "simple/num_episodes": 68,
+    "moderate/task_success_rate": 0.3088235294117647,
+    "moderate/action_efficiency": 0.8281017353465451,
+    "moderate/coordination_score": -2.3336951603279457,
+    "moderate/avg_turn_count": 16.279411764705884,
+    "moderate/num_episodes": 68,
+    "complex/task_success_rate": 0.765625,
+    "complex/action_efficiency": 2.8399550921402943,
+    "complex/coordination_score": -7.0204946067515,
+    "complex/avg_turn_count": 13.734375,
+    "complex/num_episodes": 64
+  },
+  "gen_time_mean": 0.9400491774082184,
+  "gen_time_std": 0.18458992638831073,
+  "elapsed_s": 342.27331280708313,
+  "num_episodes": 200,
+  "sample_dialogues": {
+    "t001": [
+      "Okay, so I've found the red yyy...",
+      "Alright, I'm heading around the corner.",
+      "Alright, I'm heading around, room_0 looks!",
+      "Alright, I'm heading to room_3, the studyy!"
+    ],
+    "t002": [
+      "Alright, I'm heading to square out the room.",
+      "Okay, so I'm moving to room_0.",
+      "Yeah, I'm good \u2013 just ripping away the clutter. | Okay, so now that's done... What's the task now?",
+      "Okay, so I've see anything around... let take a look around."
+    ],
+    "t003": [
+      "Alright, I'm heading around the corner.",
+      "Yeah, I'm good \u2013 just ripping away the clutter!",
+      "Yeah, I'm not sure finding anything in here. | Okay, so I've see the red yy...",
+      "Alo, I'm heading around when you seems out of the floor."
+    ]
+  }
+}

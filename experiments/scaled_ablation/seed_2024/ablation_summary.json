@@ -1,0 +1,511 @@
+{
+  "full": {
+    "ablation": "full",
+    "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+    "config": {
+      "description": "Full DiffuseAlign (all guidance signals, s=3.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.42,
+      "action_efficiency": 1.5070368901039584,
+      "coordination_score": -3.1638610183990363,
+      "avg_turn_count": 12.735,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.42,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.16176470588235295,
+      "simple/action_efficiency": 0.6358803369832781,
+      "simple/coordination_score": -0.46718710211357267,
+      "simple/avg_turn_count": 8.411764705882353,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3382352941176471,
+      "moderate/action_efficiency": 0.9609527575562907,
+      "moderate/coordination_score": -2.4832687512208547,
+      "moderate/avg_turn_count": 15.852941176470589,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.78125,
+      "complex/action_efficiency": 3.012855118626578,
+      "complex/coordination_score": -6.75220633832916,
+      "complex/avg_turn_count": 14.015625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9689552247524261,
+    "gen_time_std": 0.08813763495711918,
+    "elapsed_s": 345.8136627674103,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found that red ock and sound what looks like.",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "high_cfg": {
+    "ablation": "high_cfg",
+    "description": "High classifier-free guidance scale (s=7.0)",
+    "config": {
+      "description": "High classifier-free guidance scale (s=7.0)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 7.0
+    },
+    "metrics": {
+      "task_success_rate": 0.405,
+      "action_efficiency": 1.4526821708709496,
+      "coordination_score": -3.221209559949867,
+      "avg_turn_count": 13.14,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.405,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.17647058823529413,
+      "simple/action_efficiency": 0.6355508870214752,
+      "simple/coordination_score": -0.5753204312027842,
+      "simple/avg_turn_count": 8.470588235294118,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.9882963674258519,
+      "moderate/coordination_score": -2.3603437873413746,
+      "moderate/avg_turn_count": 15.720588235294118,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.734375,
+      "complex/action_efficiency": 2.814294076121432,
+      "complex/coordination_score": -6.947136642640164,
+      "complex/avg_turn_count": 15.359375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.8678713262081146,
+    "gen_time_std": 0.06897700765810791,
+    "elapsed_s": 280.2632803916931,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alright, I'm heading to room_3, the bedroom is looking tidy already!",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Yeah, I'm good  everything jumps out! | Okay, so I've found the red mug...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Alright, I'm heading to room_3, the bedroom."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "low_cfg": {
+    "ablation": "low_cfg",
+    "description": "Low classifier-free guidance scale (s=1.5)",
+    "config": {
+      "description": "Low classifier-free guidance scale (s=1.5)",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 1.5
+    },
+    "metrics": {
+      "task_success_rate": 0.415,
+      "action_efficiency": 1.4877633529913645,
+      "coordination_score": -3.246858987879938,
+      "avg_turn_count": 12.88,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.415,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.20588235294117646,
+      "simple/action_efficiency": 0.6721277905101434,
+      "simple/coordination_score": -0.6012498938969527,
+      "simple/avg_turn_count": 8.102941176470589,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.3235294117647059,
+      "moderate/action_efficiency": 0.959911224876623,
+      "moderate/coordination_score": -2.5717640599020353,
+      "moderate/avg_turn_count": 15.882352941176471,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.734375,
+      "complex/action_efficiency": 2.9152190242495757,
+      "complex/coordination_score": -6.775107011213381,
+      "complex/avg_turn_count": 14.765625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.8904105865955353,
+    "gen_time_std": 0.1137861378326988,
+    "elapsed_s": 312.08249711990356,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found everything away... what do you think?",
+        "Okay, so I'm moving to the study now.",
+        "Alright, I'm heading around, making sure no worrying about. | Okay, so I've got the red yy, and it looks like!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "no_coordination": {
+    "ablation": "no_coordination",
+    "description": "Remove coordination guidance signal",
+    "config": {
+      "description": "Remove coordination guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "efficiency"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.43,
+      "action_efficiency": 1.441849660050705,
+      "coordination_score": -3.313338147602311,
+      "avg_turn_count": 12.665,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.43,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.16176470588235295,
+      "simple/action_efficiency": 0.6405631949749597,
+      "simple/coordination_score": -0.49667101689160503,
+      "simple/avg_turn_count": 8.367647058823529,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.38235294117647056,
+      "moderate/action_efficiency": 1.0244610413716677,
+      "moderate/coordination_score": -2.3880116022229254,
+      "moderate/avg_turn_count": 15.308823529411764,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.765625,
+      "complex/action_efficiency": 2.7366919365401614,
+      "complex/coordination_score": -7.289206428448035,
+      "complex/avg_turn_count": 14.421875,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.7712472367286682,
+    "gen_time_std": 0.07169026492126304,
+    "elapsed_s": 292.3151948451996,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found that red ock and sound what looks like.",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "no_efficiency": {
+    "ablation": "no_efficiency",
+    "description": "Remove efficiency guidance signal",
+    "config": {
+      "description": "Remove efficiency guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "safety",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.435,
+      "action_efficiency": 1.4914682593733273,
+      "coordination_score": -3.1770815538754107,
+      "avg_turn_count": 12.795,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.435,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.22058823529411764,
+      "simple/action_efficiency": 0.6677775655716833,
+      "simple/coordination_score": -0.6814213564213564,
+      "simple/avg_turn_count": 8.147058823529411,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.38235294117647056,
+      "moderate/action_efficiency": 1.0679800063450582,
+      "moderate/coordination_score": -2.236050353913676,
+      "moderate/avg_turn_count": 15.014705882352942,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.71875,
+      "complex/action_efficiency": 2.81659589038011,
+      "complex/coordination_score": -6.828566163629687,
+      "complex/avg_turn_count": 15.375,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.9088042509555817,
+    "gen_time_std": 0.0762034062100738,
+    "elapsed_s": 320.8636677265167,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found that red ock and sound what looks like.",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "no_guidance": {
+    "ablation": "no_guidance",
+    "description": "No compositional guidance (unconditional diffusion)",
+    "config": {
+      "description": "No compositional guidance (unconditional diffusion)",
+      "use_guidance": false,
+      "active_signals": [],
+      "guidance_scale": 1.0
+    },
+    "metrics": {
+      "task_success_rate": 0.43,
+      "action_efficiency": 1.4794627537495186,
+      "coordination_score": -3.236273068099771,
+      "avg_turn_count": 12.62,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.43,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.22058823529411764,
+      "simple/action_efficiency": 0.6772080044138867,
+      "simple/coordination_score": -0.47389546727782017,
+      "simple/avg_turn_count": 8.102941176470589,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.36764705882352944,
+      "moderate/action_efficiency": 1.111055191848763,
+      "moderate/coordination_score": -2.2124308326389,
+      "moderate/avg_turn_count": 14.985294117647058,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.71875,
+      "complex/action_efficiency": 2.7232914594381796,
+      "complex/coordination_score": -7.259131644150268,
+      "complex/avg_turn_count": 14.90625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.27396600842475893,
+    "gen_time_std": 0.06718134647755442,
+    "elapsed_s": 192.00542616844177,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found everything away... what do you think?",
+        "Okay, so I'm moving to the study now.",
+        "Alright, I'm heading around, making sure no worrying about. | Okay, so I've got the red yy, and it looks like!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding that out of clothes. | Okay, so I've see anything obvious... let me check those objects and closely. | Yeah, so nice! No major array in that!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "no_safety": {
+    "ablation": "no_safety",
+    "description": "Remove safety guidance signal",
+    "config": {
+      "description": "Remove safety guidance signal",
+      "use_guidance": true,
+      "active_signals": [
+        "task",
+        "efficiency",
+        "coordination"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.415,
+      "action_efficiency": 1.6071485026153758,
+      "coordination_score": -3.1629022019303363,
+      "avg_turn_count": 12.645,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.415,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.19117647058823528,
+      "simple/action_efficiency": 0.650720439691028,
+      "simple/coordination_score": -0.5016525549613784,
+      "simple/avg_turn_count": 8.294117647058824,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.36764705882352944,
+      "moderate/action_efficiency": 1.1039461868591351,
+      "moderate/coordination_score": -2.33929799813291,
+      "moderate/avg_turn_count": 15.220588235294118,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.703125,
+      "complex/action_efficiency": 3.1580057799635006,
+      "complex/coordination_score": -6.865559418369621,
+      "complex/avg_turn_count": 14.53125,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.729364926815033,
+    "gen_time_std": 0.06501811513825785,
+    "elapsed_s": 289.4941637516022,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found that red ock and sound what looks like.",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  },
+  "task_only": {
+    "ablation": "task_only",
+    "description": "Task completion guidance only",
+    "config": {
+      "description": "Task completion guidance only",
+      "use_guidance": true,
+      "active_signals": [
+        "task"
+      ],
+      "guidance_scale": 3.0
+    },
+    "metrics": {
+      "task_success_rate": 0.465,
+      "action_efficiency": 1.5128627755982296,
+      "coordination_score": -3.275344112912048,
+      "avg_turn_count": 12.5,
+      "delegation_accuracy": 1.0,
+      "avg_bertscore": 0.0,
+      "avg_coherence": 0.0,
+      "functional_fluency_gap": 0.465,
+      "num_episodes": 200,
+      "simple/task_success_rate": 0.25,
+      "simple/action_efficiency": 0.6877413844325608,
+      "simple/coordination_score": -0.5109047406841524,
+      "simple/avg_turn_count": 7.955882352941177,
+      "simple/num_episodes": 68,
+      "moderate/task_success_rate": 0.38235294117647056,
+      "moderate/action_efficiency": 1.0309837221601925,
+      "moderate/coordination_score": -2.5914773543450016,
+      "moderate/avg_turn_count": 15.102941176470589,
+      "moderate/num_episodes": 68,
+      "complex/task_success_rate": 0.78125,
+      "complex/action_efficiency": 2.9015507479896665,
+      "complex/coordination_score": -6.939169376881672,
+      "complex/avg_turn_count": 14.5625,
+      "complex/num_episodes": 64
+    },
+    "gen_time_mean": 0.5797101128101348,
+    "gen_time_std": 0.09950437417231539,
+    "elapsed_s": 271.852308511734,
+    "num_episodes": 200,
+    "sample_dialogues": {
+      "t001": [
+        "Alo, I've found that red ock and sound what looks like.",
+        "Okay, so I'm moving to the study now.",
+        "Okay, so I'm moving into the study now. | Yeah, that makes sense. So,!",
+        "Okay, so I've found the red mug..."
+      ],
+      "t002": [
+        "Okay, so I'm moving to room_2...",
+        "Yeah, I'm almost sure the space \u2013 that' makes something out of the list. | Okay, so now that we come! The red mug!",
+        "Okay, so I've found the red yyy...",
+        "Okay, so I'm moving to the study now. | Alo, I't see anything out of place..."
+      ],
+      "t003": [
+        "Yeah, I'm not sure what everything is so...",
+        "Alright, I'm heading around, no sure finding those dusty hair. | Okay, so I've see anything obvious... let me check those objects out. | H, nice! The bedroom looks pretty clean... yeah,!",
+        "Okay, so I've see anything around...",
+        "Alright, I'm heading to room_3, the bedroom looks tidy!"
+      ]
+    }
+  }
+}

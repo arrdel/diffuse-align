@@ -17,14 +17,37 @@ build/
 # Training artifacts
 experiments/checkpoints/
 experiments/checkpoints_old_stage2/
+experiments/figures/
 *.log
 nohup.out
+
+# Old/versioned experiment results (keep only latest)
+experiments/eval_results_v*.json
+experiments/eval_log.txt
 
 # Data backups (originals before NL enrichment)
 *.bak
 
 # Utterance bank (generated, can be regenerated)
 data/utterance_bank.json
+
+# Development scripts (not part of the public release)
+scripts/debug_nan.py
+scripts/diagnose_nan.py
+scripts/assemble_v*.py
+scripts/enrich_utterances.py
+scripts/train_overnight.sh
+scripts/train_parallel.sh
+scripts/run_max_gpu.sh
+scripts/train_distributed.py
+scripts/train_multigpu.py
+scripts/train_single_gpu.py
+scripts/train_stage2.py
+scripts/train_stage2_v3.py
+scripts/train_stage3.py
+scripts/train_stages23.sh
+scripts/visualize_eval.py
+improvements.md
 
 # Environment
 .env
@@ -48,8 +71,7 @@ Thumbs.db
 
 # Temporary files
 /tmp/
-
-# Paper (submitted separately, not tracked in public repo)
-paper/
 *.tmp
-improvements.md
+
+# Paper (submitted separately for blind review)
+paper/

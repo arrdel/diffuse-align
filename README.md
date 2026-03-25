@@ -16,34 +16,6 @@ Multi-agent dialogue systems typically coordinate through sequential turn-taking
 - **Compositional guidance** — Four inference-time guidance signals (task completion, safety, efficiency, coordination) can be composed and reweighted without retraining, enabling flexible deployment trade-offs.
 - **Plan-to-dialogue decoder** — A VQ-codebook bridge to fine-tuned Flan-T5-base translates latent plan tensors into natural-language utterances, decoupling plan representation from language generation.
 
-## Architecture
-
-```
-Task Spec ──┐
-            │   ┌──────────────┐   ┌────────────────────┐
-Agent 1 ────┼──▶│    Plan      │──▶│  Cross-Agent       │
-State       │   │   Encoder    │   │  Transformer       │
-            │   │  (x-attn     │   │  Denoiser          │
-Agent N ────┘   │   fusion)    │   │  (N×T joint plan)  │
-                └──────────────┘   └─────────┬──────────┘
-                                             │
-                ┌──────────────┐             │
-                │    Role      │◄────────────┤
-                │   Masking    │             │
-                └──────┬───────┘             │
-                       │    ┌────────────────▼───────────┐
-                       │    │ Compositional Guidance      │
-                       │    │ (task + safety + efficiency │
-                       │    │  + coordination)            │
-                       │    └────────────────┬───────────┘
-                       │                     │
-                       ▼                     ▼
-                ┌────────────────────────────────────────┐
-                │  Plan-to-Dialogue Decoder              │
-                │  VQ Codebook → Flan-T5-base → NL      │
-                └────────────────────────────────────────┘
-```
-
 ## Results
 
 Evaluated across three collaborative benchmarks (ALFWorld-Multi, WebArena-Multi, CollabCooking) with 2,500 episodes per method and 5 random seeds.
@@ -57,47 +29,6 @@ Evaluated across three collaborative benchmarks (ALFWorld-Multi, WebArena-Multi,
 | **DiffuseAlign** | 42.0 | 1.48 | −3.31 | 12.9 | **0.42** |
 
 DiffuseAlign achieves the lowest **functional–fluency gap** (0.42), indicating that its dialogue quality is well-calibrated to its actual coordination capability—a desirable property for trustworthy deployment. Joint planning shows its largest improvements on complex multi-object tasks (≥16 steps), precisely where sequential approaches suffer most from myopic planning.
-
-## Project Structure
-
-```
-diffuse-align/
-├── configs/
-│   └── default.yaml               # Full experiment configuration (Hydra/OmegaConf)
-├── src/
-│   ├── diffuse_align.py            # Main model: assembles all components
-│   ├── plan_encoder.py             # Task + agent state → conditioning tensor
-│   ├── plan_diffusion.py           # DDPM/DDIM joint plan generation
-│   ├── role_masking.py             # Gumbel-softmax capability masks
-│   ├── guidance.py                 # Compositional classifier-free guidance
-│   ├── plan_decoder.py             # VQ codebook + Flan-T5 plan-to-NL decoder
-│   ├── environment.py              # Multi-agent environment wrapper
-│   ├── agents.py                   # Agent definitions with capability sets
-│   ├── dataset.py                  # Trajectory dataset loading
-│   ├── evaluation.py               # Metrics: success, efficiency, coord, gap
-│   └── utils.py                    # Shared utilities
-├── scripts/
-│   ├── train.py                    # Three-stage training pipeline
-│   ├── evaluate.py                 # Evaluation with all metrics
-│   ├── generate_trajectories.py    # Expert trajectory collection (GPT-4o)
-│   ├── ablation.py                 # Ablation study runner
-│   ├── scaled_eval.py              # Multi-seed scaled evaluation
-│   ├── run_baselines.py            # Baseline method runner
-│   ├── aggregate_ablation.py       # Aggregate ablation results across seeds
-│   ├── run_scaled_eval.sh          # Launcher for scaled evaluation
-│   └── run_all_ablations.sh        # Launcher for ablation experiments
-├── data/
-│   ├── alfworld_multi/             # ALFWorld-Multi trajectories (4,000)
-│   ├── webarena_multi/             # WebArena-Multi trajectories (4,000)
-│   └── collab_cooking/             # CollabCooking trajectories (3,000)
-├── experiments/
-│   ├── eval_results.json           # Main evaluation results
-│   ├── baseline_results.json       # Baseline comparison results
-│   ├── scaled/                     # Multi-seed evaluation (5 seeds × 500 ep.)
-│   ├── scaled_ablation/            # Ablation results (8 conditions × 5 seeds)
-│   └── ablation/                   # Single-seed ablation results
-└── requirements.txt
-```
 
 ## Installation
 
@@ -171,17 +102,6 @@ python scripts/generate_trajectories.py \
 - **Training data:** 11,000 expert trajectories from GPT-4o demonstrations
 - **Benchmarks:** ALFWorld-Multi (2 agents), WebArena-Multi (3 agents), CollabCooking (2 agents)
 
-## Citation
-
-```bibtex
-@inproceedings{diffusealign2026,
-  title     = {DiffuseAlign: Diffusion-Based Joint Plan Generation for Multi-Agent Dialogue Coordination},
-  author    = {Anonymous},
-  booktitle = {Proceedings of the 27th Annual Meeting of the Special Interest Group on Discourse and Dialogue (SIGDIAL)},
-  year      = {2026},
-  note      = {Under review}
-}
-```
 
 ## License
 
